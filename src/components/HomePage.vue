@@ -68,7 +68,7 @@ const updateBannerZoom = (event: MouseEvent) => {
 }
 
 const startBannerZoom = () => {
-  banner.value!.style.backgroundSize = "102%"
+  banner.value!.style.backgroundSize = "104%"
 }
 
 const resetBannerZoom = () => {
