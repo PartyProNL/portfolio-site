@@ -1,7 +1,7 @@
 <template>
-  <RouterView class="overflow-hidden" @mousemove="updateMouse"/>
+  <RouterView class="overflow-hidden z-0" @mousemove="updateMouse"/>
 
-  <div ref="mouseElement" class="size-16 top-0 left-0 absolute pointer-events-none text-white">
+  <div ref="mouseElement" class="size-16 top-0 left-0 absolute pointer-events-none text-white z-10">
     <div ref="mouseInner" class="size-16 bg-[#E84855] rounded-full flex justify-center items-center mouse-scale scale-[.25]">
       <svg v-if="activeIcon == 'left'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />

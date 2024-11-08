@@ -11,7 +11,7 @@
     </div>
 
     <div class="min-w-full h-[520px] relative">
-      <FollowingImage :enabled="!isTransitioning" v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute carousel-transition" @mouseleave="setIcon('')" :image="project.image">
+      <FollowingImage :class="{ disappear: isTransitioning && currentProjectIndex !== index }" :enabled="!isTransitioning" v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute carousel-transition" @mouseleave="setIcon('')" :image="project.image">
         <div v-if="index == currentProjectIndex" @click="previousProject" @mouseenter="setIcon('left')" class="h-full w-[20%]"></div>
         <div @click="openProject(index)" v-if="index == currentProjectIndex" @mouseenter="setIcon('banner')" class="h-full w-[60%]"></div>
         <div v-if="index == currentProjectIndex" @click="nextProject" @mouseenter="setIcon('right')" class="h-full w-[20%]"></div>
@@ -66,5 +66,20 @@ const openProject = (id: number) => {
 <style scoped>
 .carousel-transition {
   transition: transform 1s cubic-bezier(.27,0,.15,1);
+}
+
+.disappear {
+  animation: disappear 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>
