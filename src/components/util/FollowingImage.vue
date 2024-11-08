@@ -1,5 +1,5 @@
 <template>
-  <div class="banner w-full h-full bg-cover bg-center flex" :style="{backgroundImage: `url(${props.image})`}" @mouseenter="startBannerZoom" @mousemove="updateBannerZoom" @mouseleave="resetBannerZoom">
+  <div ref="banner" class="banner w-full h-full bg-cover bg-center flex" :style="{backgroundImage: `url(${props.image})`}" @mouseenter="startBannerZoom" @mousemove="updateBannerZoom" @mouseleave="resetBannerZoom">
     <slot/>
   </div>
 </template>
