@@ -1,6 +1,8 @@
 <template>
-  <div ref="banner" class="banner w-full h-full bg-cover bg-center flex" :style="{backgroundImage: `url(${props.image})`}" @mouseenter="startBannerZoom" @mousemove="updateBannerZoom" @mouseleave="resetBannerZoom">
-    <slot/>
+  <div class="w-full h-full">
+    <div ref="banner" class="banner w-full h-full bg-cover bg-center flex" :style="{backgroundImage: `url(${props.image})`}" @mouseenter="startBannerZoom" @mousemove="updateBannerZoom" @mouseleave="resetBannerZoom">
+      <slot/>
+    </div>
   </div>
 </template>
 
