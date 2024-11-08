@@ -7,14 +7,27 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import {ref, watch} from "vue";
 
 const props = defineProps({
-  image: String
+  image: String,
+  enabled: Boolean
+})
+
+watch(props, () => {
+  if(!props.enabled) {
+    resetBannerZoom()
+  }
 })
 
 const banner = ref<HTMLElement>()
 const updateBannerZoom = (event: MouseEvent) => {
+  if(!props.enabled) {
+    banner.value!.style.backgroundPositionX = "50%"
+    banner.value!.style.backgroundPositionY = "50%"
+    return;
+  }
+
   const rect = banner.value!.getBoundingClientRect();
 
   const x = event.clientX - rect.left;
@@ -33,11 +46,11 @@ const updateBannerZoom = (event: MouseEvent) => {
 }
 
 const startBannerZoom = () => {
-  banner.value!.style.backgroundSize = "102%"
+  banner.value!.style.backgroundSize = "113%"
 }
 
 const resetBannerZoom = () => {
-  banner.value!.style.backgroundSize = "100%"
+  banner.value!.style.backgroundSize = "110%"
   banner.value!.style.backgroundPositionX = "50%"
   banner.value!.style.backgroundPositionY = "50%"
 }
@@ -45,6 +58,8 @@ const resetBannerZoom = () => {
 
 <style scoped>
 .banner {
+  background-size: 110%;
   transition: background-position 0.5s, background-size 0.5s;
+  filter: grayscale(100%)
 }
 </style>

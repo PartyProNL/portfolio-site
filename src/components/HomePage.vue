@@ -1,49 +1,37 @@
 <template>
-  <div class="w-full px-20 h-screen max-h-screen overflow-hidden text-[#280003] cursor-none">
-    <div class="flex justify-between font-[Spectral]">
-      <h2 class="font-semibold tracking-tight text-3xl mt-auto" style="font-stretch: 1000%">Youri Scheepers</h2>
-      <h1 class="font-regular tracking-tight text-6xl mt-6 mb-2">{{ getCurrentProject().name }}</h1>
+  <div class="w-full px-20 h-screen max-h-screen overflow-hidden bg-black text-white">
+    <div class="flex justify-between font-[Didot]">
+      <div class="flex mt-auto items-center">
+        <h2 class="font-thin tracking-tight text-3xl mr-2" style="font-stretch: 1000%">Youri Scheepers</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+        </svg>
+      </div>
+      <h1 class="font-thin text-8xl leading-[0.8] mt-6">{{ getCurrentProject().name.toUpperCase() }}</h1>
     </div>
 
-    <div class="min-w-full h-[520px] mt-4 relative">
-      <FollowingImage v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute carousel-transition" @mouseleave="activeIcon = ''" :image="project.image">
-        <div v-if="index == currentProjectIndex" @click="previousProject" @mouseenter="activeIcon = 'left'" class="h-full w-[20%]"></div>
-        <div v-if="index == currentProjectIndex" @mouseenter="activeIcon = 'banner'" class="h-full w-[60%]"></div>
-        <div v-if="index == currentProjectIndex" @click="nextProject" @mouseenter="activeIcon = 'right'" class="h-full w-[20%]"></div>
+    <div class="min-w-full h-[520px] relative">
+      <FollowingImage :enabled="!isTransitioning" v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute carousel-transition" @mouseleave="setIcon('')" :image="project.image">
+        <div v-if="index == currentProjectIndex" @click="previousProject" @mouseenter="setIcon('left')" class="h-full w-[20%]"></div>
+        <div @click="openProject(index)" v-if="index == currentProjectIndex" @mouseenter="setIcon('banner')" class="h-full w-[60%]"></div>
+        <div v-if="index == currentProjectIndex" @click="nextProject" @mouseenter="setIcon('right')" class="h-full w-[20%]"></div>
       </FollowingImage>
     </div>
 
-    <div class="font-[Salo]">
-      <h3 class="underline font-medium underline-offset-8 my-6 text-3xl tracking-wide">{{ getCurrentProject().slogan }}</h3>
-    </div>
-
-    <div ref="mouseElement" class="size-16 top-0 left-0 absolute pointer-events-none text-white">
-      <div ref="mouseInner" class="size-16 bg-[#586F6B] rounded-full flex justify-center items-center mouse-scale">
-        <svg v-if="activeIcon == 'left'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-        </svg>
-
-        <svg v-if="activeIcon == 'banner'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-        </svg>
-
-        <svg v-if="activeIcon == 'right'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-        </svg>
-      </div>
+    <div class="font-[Spectral]">
+      <h3 class="underline font-light underline-offset-8 my-6 text-3xl tracking-wide">{{ getCurrentProject().slogan }}</h3>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref} from "vue";
+import {inject, ref} from "vue";
 import FollowingImage from "./util/FollowingImage.vue";
 import {ProjectService} from "./services/ProjectService.ts";
 import {Project} from "./models/Project.ts";
+import {useRouter} from "vue-router";
 
-const mouseElement = ref<HTMLElement>()
-const mouseInner = ref<HTMLElement>()
-const activeIcon = ref()
+const setIcon: (value: string) => {} = inject("setIcon")!
 
 const projectService = new ProjectService();
 const projects = ref(projectService.getProjects());
@@ -55,14 +43,6 @@ const getCarouselTranslation = (index: number): string => {
 
 const getCurrentProject = (): Project => { return projects.value[currentProjectIndex.value]; }
 
-document.addEventListener("mousemove", (event: MouseEvent) => {
-  let scale = 1;
-  if(activeIcon.value == '') scale = 0.25;
-
-  mouseElement.value!.style.transform = `translate(${event.x-32}px, ${event.y-32}px)`
-  mouseInner.value!.style.transform = `scale(${scale})`
-})
-
 const nextProject = () => {
   currentProjectIndex.value++
 }
@@ -70,14 +50,20 @@ const nextProject = () => {
 const previousProject = () => {
   currentProjectIndex.value--
 }
+
+const isTransitioning = ref(false)
+const router = useRouter()
+const openProject = (id: number) => {
+  if(isTransitioning.value) return;
+  isTransitioning.value = true;
+
+  setTimeout(() => {
+    router.push("/project/"+id)
+  }, 500)
+}
 </script>
 
 <style scoped>
-.mouse-scale {
-  transform-origin: center;
-  transition: transform 0.2s ease-in-out;
-}
-
 .carousel-transition {
   transition: transform 1s cubic-bezier(.27,0,.15,1);
 }
