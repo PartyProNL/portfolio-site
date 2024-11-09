@@ -1,5 +1,5 @@
 <template>
-  <RouterView class="overflow-hidden z-0" @mousemove="updateMouse"/>
+  <RouterView class="z-0" @mousemove="updateMouse"/>
 
   <div ref="mouseElement" class="size-16 top-0 left-0 absolute pointer-events-none text-white z-10">
     <div ref="mouseInner" class="size-16 bg-[#E84855] rounded-full flex justify-center items-center mouse-scale scale-[.25]">

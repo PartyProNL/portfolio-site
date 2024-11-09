@@ -11,7 +11,7 @@
     </div>
 
     <div class="min-w-full h-[520px] relative">
-      <FollowingImage :class="{ disappear: isTransitioning && currentProjectIndex !== index }" :enabled="!isTransitioning" v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute carousel-transition" @mouseleave="setIcon('')" :image="project.image">
+      <FollowingImage :class="{ disappear: isTransitioning && currentProjectIndex !== index, appear: currentProjectIndex !== index && !pageOpenPassed }" :enabled="!isTransitioning" v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute carousel-transition" @mouseleave="setIcon('')" :image="project.image">
         <div v-if="index == currentProjectIndex" @click="previousProject" @mouseenter="setIcon('left')" class="h-full w-[20%]"></div>
         <div @click="openProject(index)" v-if="index == currentProjectIndex" @mouseenter="setIcon('banner')" class="h-full w-[60%]"></div>
         <div v-if="index == currentProjectIndex" @click="nextProject" @mouseenter="setIcon('right')" class="h-full w-[20%]"></div>
@@ -29,13 +29,18 @@ import {inject, ref} from "vue";
 import FollowingImage from "./util/FollowingImage.vue";
 import {ProjectService} from "./services/ProjectService.ts";
 import {Project} from "./models/Project.ts";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 
 const setIcon: (value: string) => {} = inject("setIcon")!
 
 const projectService = new ProjectService();
 const projects = ref(projectService.getProjects());
 const currentProjectIndex = ref(0)
+
+const route = useRoute()
+if(route.query.from) {
+  currentProjectIndex.value = parseInt(route.query.from as string)
+}
 
 const getCarouselTranslation = (index: number): string => {
   return `calc(${(index-currentProjectIndex.value)*100}% + ${(index-currentProjectIndex.value)*32}px)`;
@@ -61,11 +66,23 @@ const openProject = (id: number) => {
     router.push("/project/"+id)
   }, 500)
 }
+
+let pageOpenPassed = false
+setTimeout(() => {
+  pageOpenPassed = true
+}, 10)
 </script>
 
 <style scoped>
 .carousel-transition {
   transition: transform 1s cubic-bezier(.27,0,.15,1);
+}
+
+.appear {
+  animation: appear 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  opacity: 0;
 }
 
 .disappear {
@@ -82,4 +99,14 @@ const openProject = (id: number) => {
     opacity: 0;
   }
 }
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 </style>

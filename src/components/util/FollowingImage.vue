@@ -58,7 +58,7 @@ const resetBannerZoom = () => {
 
 <style scoped>
 .banner {
-  background-size: 110%;
+  background-size: 113%;
   transition: background-position 0.5s, background-size 0.5s;
   filter: grayscale(100%)
 }
