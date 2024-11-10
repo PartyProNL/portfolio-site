@@ -3,5 +3,6 @@ export type Project = {
     slogan: string,
     image: string,
     backgroundColor: string,
-    textColor: string
+    textColor: string,
+    body: string
 }
