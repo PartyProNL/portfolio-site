@@ -1,6 +1,6 @@
-import {ComponentName} from "./ProjectBodyPart.ts";
+import {Component} from "vue";
 
 export interface RenderInfo {
-    component: ComponentName;
+    component: Component;
     props: Record<string, any>;
 }

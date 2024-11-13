@@ -1,5 +1,6 @@
 import {ProjectBodyPart} from "./ProjectBodyPart.ts";
 import {RenderInfo} from "./RenderInfo.ts";
+import BodyMultiImageRenderer from "../util/BodyMultiImageRenderer.vue";
 
 export class ProjectBodyMultiImage extends ProjectBodyPart {
     public urls: string[];
@@ -13,7 +14,7 @@ export class ProjectBodyMultiImage extends ProjectBodyPart {
 
     render(): RenderInfo {
         return {
-            component: "BodyMultiImageRenderer",
+            component: BodyMultiImageRenderer,
             props: {
                 urls: this.urls,
                 altText: this.altText

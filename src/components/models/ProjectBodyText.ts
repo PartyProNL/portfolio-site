@@ -1,5 +1,6 @@
 import {ProjectBodyPart} from "./ProjectBodyPart.ts";
 import {RenderInfo} from "./RenderInfo.ts";
+import BodyTextRenderer from "../util/BodyTextRenderer.vue";
 
 export class ProjectBodyText extends ProjectBodyPart {
     public text: string;
@@ -11,7 +12,7 @@ export class ProjectBodyText extends ProjectBodyPart {
 
     render(): RenderInfo {
         return {
-            component: "BodyTextRenderer",
+            component: BodyTextRenderer,
             props: { text: this.text }
         };
     }
