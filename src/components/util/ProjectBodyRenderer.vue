@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import { defineProps } from "vue";
-import {ProjectBodyPart} from "../models/ProjectBodyPart.ts";
+import {ComponentName, ProjectBodyPart} from "../models/ProjectBodyPart.ts";
 import BodyTextRenderer from "./BodyTextRenderer.vue";
 import BodyImageRenderer from "./BodyImageRenderer.vue";
 
@@ -19,7 +19,7 @@ defineProps<{
   parts: ProjectBodyPart[];
 }>();
 
-const components = {
+const components: Record<ComponentName, typeof BodyTextRenderer | typeof BodyImageRenderer> = {
   BodyTextRenderer,
   BodyImageRenderer,
 };

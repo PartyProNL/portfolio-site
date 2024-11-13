@@ -1,5 +1,5 @@
 <template>
-  <img class="max-w-full mt-4 max-h-[620px]" :src="url" :alt="altText">
+  <img class="mt-8 max-w-[1000px]" :src="url" :alt="altText">
   <p class="italic ml-4">{{ altText }}</p>
 </template>
 

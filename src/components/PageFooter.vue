@@ -10,6 +10,7 @@
       <h4 class="font-semibold pb-2">Contact</h4>
       <p>LinkedIn</p>
       <p>E-mail</p>
+      <p>GitHub</p>
     </div>
 
     <div class="flex flex-col">
