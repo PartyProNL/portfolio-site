@@ -38,8 +38,10 @@ const projects = ref(projectService.getProjects());
 const currentProjectIndex = ref(0)
 
 const route = useRoute()
+const router = useRouter()
 if(route.query.from) {
   currentProjectIndex.value = parseInt(route.query.from as string)
+  router.replace(Object.assign({}, route.query))
 }
 
 const getCarouselTranslation = (index: number): string => {
@@ -57,7 +59,6 @@ const previousProject = () => {
 }
 
 const isTransitioning = ref(false)
-const router = useRouter()
 const openProject = (id: number) => {
   if(isTransitioning.value) return;
   isTransitioning.value = true;
