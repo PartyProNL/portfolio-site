@@ -11,11 +11,17 @@
     </div>
 
     <div class="min-w-full h-[520px] relative">
-      <FollowingImage :class="{ disappear: isTransitioning && currentProjectIndex !== index, appear: currentProjectIndex !== index && !pageOpenPassed }" :enabled="!isTransitioning" v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute carousel-transition" @mouseleave="setIcon('')" :image="project.image">
+      <FollowingImage :class="{ 'carousel-transition': !isCarouselJumping, disappear: isTransitioning && currentProjectIndex !== -2, appear: currentProjectIndex !== -2 && !pageOpenPassed }" :enabled="false"  :style="{ transform: 'translateX('+getCarouselTranslation(-2)+')'}" class="absolute" :image="projects[projects.length-2].image"></FollowingImage>
+      <FollowingImage :class="{ 'carousel-transition': !isCarouselJumping, disappear: isTransitioning && currentProjectIndex !== -1, appear: currentProjectIndex !== -1 && !pageOpenPassed }" :enabled="false"  :style="{ transform: 'translateX('+getCarouselTranslation(-1)+')'}" class="absolute" :image="projects[projects.length-1].image"></FollowingImage>
+
+      <FollowingImage :class="{ 'carousel-transition': !isCarouselJumping, disappear: isTransitioning && currentProjectIndex !== index, appear: currentProjectIndex !== index && !pageOpenPassed }" :enabled="!isTransitioning" v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute" @mouseleave="setIcon('')" :image="project.image">
         <div v-if="index == currentProjectIndex" @click="previousProject" @mouseenter="setIcon('left')" class="h-full w-[20%]"></div>
         <div @click="openProject(index)" v-if="index == currentProjectIndex" @mouseenter="setIcon('banner')" class="h-full w-[60%]"></div>
         <div v-if="index == currentProjectIndex" @click="nextProject" @mouseenter="setIcon('right')" class="h-full w-[20%]"></div>
       </FollowingImage>
+
+      <FollowingImage :class="{ 'carousel-transition': !isCarouselJumping, disappear: isTransitioning && currentProjectIndex !== projects.length, appear: currentProjectIndex !== projects.length && !pageOpenPassed }" :enabled="false"  :style="{ transform: 'translateX('+getCarouselTranslation(projects.length)+')'}" class="absolute" :image="projects[0].image"></FollowingImage>
+      <FollowingImage :class="{ 'carousel-transition': !isCarouselJumping, disappear: isTransitioning && currentProjectIndex !== projects.length+1, appear: currentProjectIndex !== projects.length+1 && !pageOpenPassed }" :enabled="false"  :style="{ transform: 'translateX('+getCarouselTranslation(projects.length+1)+')'}" class="absolute" :image="projects[1].image"></FollowingImage>
     </div>
 
     <div class="font-[Spectral]">
@@ -48,14 +54,43 @@ const getCarouselTranslation = (index: number): string => {
   return `calc(${(index-currentProjectIndex.value)*100}% + ${(index-currentProjectIndex.value)*32}px)`;
 }
 
-const getCurrentProject = (): Project => { return projects.value[currentProjectIndex.value]; }
+const getCurrentProject = (): Project => {
+  if(currentProjectIndex.value == -1) return projects.value[projects.value.length-1]
+  if(currentProjectIndex.value == projects.value.length) return projects.value[0]
+  return projects.value[currentProjectIndex.value];
+}
 
 const nextProject = () => {
   currentProjectIndex.value++
+
+  // Move to correct position if at end of carousel
+  if(currentProjectIndex.value == projects.value.length) {
+    setTimeout(() => {
+      isCarouselJumping.value = true
+      currentProjectIndex.value = 0
+
+      setTimeout(() => {
+        isCarouselJumping.value = false
+      }, 10)
+    }, 1000)
+  }
 }
 
+const isCarouselJumping = ref(false)
 const previousProject = () => {
   currentProjectIndex.value--
+
+  // Move to correct position if at end of carousel
+  if(currentProjectIndex.value == -1) {
+    setTimeout(() => {
+      isCarouselJumping.value = true
+      currentProjectIndex.value = projects.value.length-1
+
+      setTimeout(() => {
+        isCarouselJumping.value = false
+      }, 10)
+    }, 1000)
+  }
 }
 
 const isTransitioning = ref(false)
