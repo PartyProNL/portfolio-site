@@ -34,6 +34,7 @@
         <p>Design</p>
       </div>
     </div>
+    <PageFooter :background-color="textColor" :text-color="backgroundColor"></PageFooter>
   </div>
 </template>
 
