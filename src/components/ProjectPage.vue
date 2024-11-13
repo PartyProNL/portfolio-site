@@ -1,39 +1,42 @@
 <template>
-  <div class="w-full px-20 min-h-screen bg-black text-white page" :style="{backgroundColor: backgroundColor, color: textColor}">
-    <div :class="{ 'header-back': isTransitioning}" class="header flex justify-between font-[Didot]">
-      <div class="flex mt-auto items-center">
-        <h2 class="font-thin tracking-tight text-3xl mr-2" style="font-stretch: 1000%">Youri Scheepers</h2>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-        </svg>
+  <div class="w-full min-h-screen bg-black">
+    <div class="w-full px-20 min-h-screen bg-black text-white page" :style="{backgroundColor: backgroundColor, color: textColor}">
+      <div :class="{ 'header-back': isTransitioning}" class="header flex justify-between font-[Didot]">
+        <div class="flex mt-auto items-center">
+          <h2 class="font-thin tracking-tight text-3xl mr-2" style="font-stretch: 1000%">Youri Scheepers</h2>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+          </svg>
+        </div>
+        <h1 class="font-thin text-8xl leading-[0.8] mt-6">{{ project.name.toUpperCase() }}</h1>
       </div>
-      <h1 class="font-thin text-8xl leading-[0.8] mt-6">{{ project.name.toUpperCase() }}</h1>
-    </div>
 
-    <div :class="{ 'banner-parent-back': isTransitioning}" class="banner-parent min-w-full h-[520px] z-10">
-      <div :class="{ 'banner-back': isTransitioning}" class="banner w-full h-[520px] bg-cover bg-center absolute left-0 z-10" :style="{backgroundImage: 'url('+project.image+')'}">
-        <div :class="{ 'back-button-back': isTransitioning}" class="absolute top-4 left-20 translate-x-1/2 text-white back-button opacity-0 rounded-full bg-black flex items-center font-[Spectral] font-thin text-lg">
-          <p @click="goBack" @mouseenter="showBackIcon" @mouseleave="setIcon('')"  class="h-full pl-12 pr-6 py-4">Projects</p>
+      <div :class="{ 'banner-parent-back': isTransitioning}" class="banner-parent min-w-full h-[520px] z-10">
+        <div :class="{ 'banner-back': isTransitioning}" class="banner w-full h-[520px] bg-cover bg-center absolute left-0 z-10" :style="{backgroundImage: 'url('+project.image+')'}">
+          <div :class="{ 'back-button-back': isTransitioning}" class="absolute top-4 left-20 translate-x-1/2 text-white back-button opacity-0 rounded-full bg-black flex items-center font-[Spectral] font-thin text-lg">
+            <p @click="goBack" @mouseenter="showBackIcon" @mouseleave="setIcon('')"  class="h-full pl-12 pr-6 py-4">Projects</p>
 
-          <p class="h-full pl-6 pr-12 py-4">About me</p>
+            <p class="h-full pl-6 pr-12 py-4">About me</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="font-[Spectral] translate-y-[-101px] z-0 flex">
+        <div class="w-full">
+          <h1 class="font-[Didot] name font-thin text-8xl leading-[0.8] mt-6">{{ project.name.toUpperCase() }}</h1>
+          <h3 class="underline font-light underline-offset-8 my-6 text-3xl tracking-wide">{{ project.slogan }}</h3>
+
+          <div :class="{ 'body-disappear': isTransitioning}" class="body">
+            <ProjectBodyRenderer :parts="project.body"/>
+          </div>
+        </div>
+        <div :class="{ 'body-disappear': isTransitioning}" class="body ml-40 mt-40 mr-8">
+          <p class="font-bold">Dokkie</p>
+          <p>Design</p>
         </div>
       </div>
     </div>
 
-    <div class="font-[Spectral] translate-y-[-101px] z-0 flex">
-      <div class="w-full">
-        <h1 class="font-[Didot] name font-thin text-8xl leading-[0.8] mt-6">{{ project.name.toUpperCase() }}</h1>
-        <h3 class="underline font-light underline-offset-8 my-6 text-3xl tracking-wide">{{ project.slogan }}</h3>
-
-        <div :class="{ 'body-disappear': isTransitioning}" class="body">
-          {{project.body}}
-        </div>
-      </div>
-      <div :class="{ 'body-disappear': isTransitioning}" class="body ml-40 mt-40 mr-8">
-        <p class="font-bold">Dokkie</p>
-        <p>Design</p>
-      </div>
-    </div>
     <PageFooter :background-color="textColor" :text-color="backgroundColor"></PageFooter>
   </div>
 </template>
@@ -42,6 +45,8 @@
 import {useRoute, useRouter} from "vue-router";
 import {ProjectService} from "./services/ProjectService.ts";
 import {inject, ref} from "vue";
+import ProjectBodyRenderer from "./util/ProjectBodyRenderer.vue";
+import PageFooter from "./PageFooter.vue";
 
 const backgroundColor = ref("#000000")
 const textColor = ref("#FFFFFF")
