@@ -39,6 +39,7 @@ export class ProjectService {
             new ProjectBodyImage("./img/bandi/store-2.png", "The shopping cart sheet that appears before checkout"),
             new ProjectBodyImage("./img/bandi/store-3.png", "Further details on the product page of our 'VIP-rank'. All renders and art are by me as well"),
             new ProjectBodyText("These are some of the web-apps I have worked on for BandiThemepark. I was also involved in developing the main REST API that powers most of our services, but my main task was the game-server(s) code. Most of that is hard to show, especially if you are not familiar with Minecraft. I do have some visualization for the rollercoasters I programmed though."),
+            new ProjectBodyImage("./img/bandi/plugin-1.png", "Our in-game rollercoaster editor, which visualizes the spline of the ride"),
             new ProjectBodyText("This picture shows our rollercoaster system. Minecraft does not have (realistic) rollercoasters as part of the game, so I had to program my own. At their core, these rollercoasters are Bezier splines, that have trains that follow these splines. These trains have simulated physics (written by me), and their rendering is powered by matrices and quaternions. Each rollercoaster also has a realistic control system, modeled after real-life examples. There can also be collisions between trains.")
         ]
     },
