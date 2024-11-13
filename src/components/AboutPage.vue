@@ -1,5 +1,5 @@
 <template>
- <div :class="{disappear: isTransitioning}" class="font-[Didot] text-white w-full h-screen flex bg-white gap-[1px] body">
+ <div :class="{disappear: isTransitioning}" class="font-[Didot] text-white w-full h-screen flex bg-white gap-[1px] body overflow-hidden">
    <div class="bg-black w-1/2 flex flex-col justify-between">
      <div class="px-4 py-4">
       <div @click="backToProjects" @mouseenter="setIcon('left')" @mouseleave="setIcon('')"  class="bg-white text-black flex items-center gap-2 px-4 py-2 w-fit pr-6">
