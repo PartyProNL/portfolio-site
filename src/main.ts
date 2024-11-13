@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
-import { createRouter, createWebHistory} from "vue-router";
+import {createRouter, createWebHashHistory} from "vue-router";
 import HomePage from "./components/HomePage.vue";
 import ProjectPage from "./components/ProjectPage.vue";
 import AboutPage from "./components/AboutPage.vue";
@@ -13,7 +13,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes,
 })
 
