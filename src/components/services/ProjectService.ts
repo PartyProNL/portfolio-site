@@ -12,7 +12,7 @@ export class ProjectService {
         backgroundColor: "#fcf8e8",
         textColor: "#280003",
         body: [
-            new ProjectBodyText("Not many things are as deeply rooted into Dutch culture as sharing the bill. Many people nowadays use apps to help this process, to keep track of all expenses, and to accurately calculate what everyone has to pay. Dokkie does exactly that."),
+            new ProjectBodyText("Not many things are as deeply rooted into Dutch culture as sharing the bill. Many people nowadays use apps to help this process, to keep track of all expenses, and to accurately calculate what everyone has to pay. Dokkie does exactly that. It was my first academic project."),
             new ProjectBodyText("Dokkie allows you to create events, and invite other users to them. You can then add costs to an event, and lock the event to finish. All users will then get access to a shareable list of transactions that must be made. Locking the event also starts payment tracking, offering an easy way to keep track of who you've sent money too, who you still need to pay and who you should still receive money from."),
             new ProjectBodyMultiImage(["./img/dokkie/dokkie-1.png", "./img/dokkie/dokkie-2.png", "./img/dokkie/dokkie-3.png"], "Some of the core pages when logged in, viewed on a phone"),
             new ProjectBodyText("The project follows the Google Material Design 3 guidelines, using their colors according to the guidelines and implementing some of their components."),
@@ -21,34 +21,8 @@ export class ProjectService {
         ]
     },
     {
-        name: "Code Exchange",
-        slogan: "Empowering students to help each other.",
-        image: "./img/banner-2.jpg",
-        backgroundColor: "#D7FDF0",
-        textColor: "#171738",
-        body: [
-            new ProjectBodyText("Body goes here")
-        ]
-    },
-    {
-        name: "Elections",
-        slogan: "Accessible insight into election data for everyone.",
-        image: "./img/banner-3.jpg",
-        backgroundColor: "#fcf8e8",
-        textColor: "#280003",
-        body: [
-            new ProjectBodyText("For my third semester, I was tasked with creating a website together with my team to view Dutch election results. We built a front-end using TypeScript, Vue3 and TailwindCSS, and connected it to a Java Spring Boot with Hibernate back-end."),
-            new ProjectBodyImage("./img/elections/elections-1.png", ""),
-            new ProjectBodyText("The main task in this project was loading the election data. We used publicly available XML-files supplied by the government, and had to parse these to put them into an SQL database. These datasets are quite big, around 2-3GB each. We had limited computing resources, so our code being optimized was very important."),
-            new ProjectBodyText("I did many optimizations, but some included optimizing the indexes of our database, utilizing multithreading and using Java's PreparedStatements."),
-            new ProjectBodyImage("./img/elections/elections-2.png", ""),
-            new ProjectBodyImage("./img/elections/elections-3.png", ""),
-            new ProjectBodyImage("./img/elections/elections-4.png", ""),
-        ]
-    },
-    {
         name: "BandiThemepark",
-        slogan: "Add slogan!",
+        slogan: "The next generation of Minecraft themeparks.",
         image: "./img/banner-4.png",
         backgroundColor: "#fcf8e8",
         textColor: "#280003",
@@ -66,6 +40,36 @@ export class ProjectService {
             new ProjectBodyImage("./img/bandi/store-3.png", "Further details on the product page of our 'VIP-rank'. All renders and art are by me as well"),
             new ProjectBodyText("These are some of the web-apps I have worked on for BandiThemepark. I was also involved in developing the main REST API that powers most of our services, but my main task was the game-server(s) code. Most of that is hard to show, especially if you are not familiar with Minecraft. I do have some visualization for the rollercoasters I programmed though."),
             new ProjectBodyText("This picture shows our rollercoaster system. Minecraft does not have (realistic) rollercoasters as part of the game, so I had to program my own. At their core, these rollercoasters are Bezier splines, that have trains that follow these splines. These trains have simulated physics (written by me), and their rendering is powered by matrices and quaternions. Each rollercoaster also has a realistic control system, modeled after real-life examples. There can also be collisions between trains.")
+        ]
+    },
+    {
+        name: "Code Exchange",
+        slogan: "Empowering students to help each other.",
+        image: "./img/banner-2.jpg",
+        backgroundColor: "#D7FDF0",
+        textColor: "#171738",
+        body: [
+            new ProjectBodyText("For my second academic project, I had to create a coding forum for students, inspired by StackOverflow."),
+            new ProjectBodyImage("./img/code-exchange/code-exchange-2.png", "The home page of the site"),
+            new ProjectBodyImage("./img/code-exchange/code-exchange-1.png", "The view page for a question, featuring code syntax highlighting"),
+            new ProjectBodyMultiImage(["./img/code-exchange/code-exchange-6.png", "./img/code-exchange/code-exchange-5.png", "./img/code-exchange/code-exchange-4.png"], "Multiple other pages from the site, viewed on a mobile phone"),
+            new ProjectBodyImage("./img/code-exchange/code-exchange-3.png", "The user info page, showcasing their public information and recent activity"),
+        ]
+    },
+    {
+        name: "Elections",
+        slogan: "Accessible insight into election data for everyone.",
+        image: "./img/banner-3.jpg",
+        backgroundColor: "#fcf8e8",
+        textColor: "#280003",
+        body: [
+            new ProjectBodyText("For my third semester, I was tasked with creating a website together with my team to view Dutch election results. We built a front-end using TypeScript, Vue3 and TailwindCSS, and connected it to a Java Spring Boot with Hibernate back-end."),
+            new ProjectBodyImage("./img/elections/elections-1.png", "The core page showing a summary of the selected election's results"),
+            new ProjectBodyText("The main task in this project was loading the election data. We used publicly available XML-files supplied by the government, and had to parse these to put them into an SQL database. These datasets are quite big, around 2-3GB each. We had limited computing resources, so our code being optimized was very important."),
+            new ProjectBodyText("I did many optimizations, but some included optimizing the indexes of our database, utilizing multithreading and using Java's PreparedStatements."),
+            new ProjectBodyImage("./img/elections/elections-2.png", "The admin dashboard, with some simple statistics and a tool to load election data"),
+            new ProjectBodyImage("./img/elections/elections-3.png", "The party information page, showcasing some general information, and more detailed information about their result per municipality"),
+            new ProjectBodyMultiImage(["./img/elections/elections-4.png"], "A map that offers an easier way to interpret election results of a party"),
         ]
     }]
 
