@@ -45,7 +45,7 @@
 import {useRoute, useRouter} from "vue-router";
 import {ProjectService} from "./services/ProjectService.ts";
 import {inject, ref} from "vue";
-import ProjectBodyRenderer from "./util/ProjectBodyRenderer.vue";
+import ProjectBodyRenderer from "./project-body/render/ProjectBodyRenderer.vue";
 import PageFooter from "./PageFooter.vue";
 
 const backgroundColor = ref("#000000")

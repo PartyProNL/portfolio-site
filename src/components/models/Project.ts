@@ -1,4 +1,4 @@
-import {ProjectBodyPart} from "./ProjectBodyPart.ts";
+import {ProjectBodyPart} from "../project-body/ProjectBodyPart.ts";
 
 export type Project = {
     name: string,

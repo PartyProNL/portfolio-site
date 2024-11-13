@@ -1,6 +1,6 @@
 import {ProjectBodyPart} from "./ProjectBodyPart.ts";
-import {RenderInfo} from "./RenderInfo.ts";
-import BodyTextRenderer from "../util/BodyTextRenderer.vue";
+import {RenderInfo} from "../models/RenderInfo.ts";
+import BodyTextRenderer from "./render/BodyTextRenderer.vue";
 
 export class ProjectBodyText extends ProjectBodyPart {
     public text: string;

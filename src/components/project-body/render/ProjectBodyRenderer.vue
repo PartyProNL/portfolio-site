@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import { defineProps} from "vue";
-import { ProjectBodyPart } from "../models/ProjectBodyPart.ts";
+import { ProjectBodyPart } from "../ProjectBodyPart.ts";
 
 defineProps<{
   parts: ProjectBodyPart[];

@@ -1,7 +1,7 @@
 import {Project} from "../models/Project.ts";
-import {ProjectBodyText} from "../models/ProjectBodyText.ts";
-import {ProjectBodyImage} from "../models/ProjectBodyImage.ts";
-import {ProjectBodyMultiImage} from "../models/ProjectBodyMultiImage.ts";
+import {ProjectBodyText} from "../project-body/ProjectBodyText.ts";
+import {ProjectBodyImage} from "../project-body/ProjectBodyImage.ts";
+import {ProjectBodyMultiImage} from "../project-body/ProjectBodyMultiImage.ts";
 
 export class ProjectService {
     private projects: Project[] = [

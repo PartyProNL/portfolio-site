@@ -1,6 +1,6 @@
 import {ProjectBodyPart} from "./ProjectBodyPart.ts";
-import {RenderInfo} from "./RenderInfo.ts";
-import BodyImageRenderer from "../util/BodyImageRenderer.vue";
+import {RenderInfo} from "../models/RenderInfo.ts";
+import BodyImageRenderer from "./render/BodyImageRenderer.vue";
 
 export class ProjectBodyImage extends ProjectBodyPart {
     public url: string;
