@@ -1,7 +1,7 @@
 <template>
   <div class="w-full px-20 h-screen max-h-screen overflow-hidden bg-black text-white">
     <div class="flex justify-between font-[Didot]">
-      <div class="flex mt-auto items-center">
+      <div class="flex mt-auto items-center" @mouseenter="setIcon('banner')" @mouseleave="setIcon('')" @click="openAbout">
         <h2 class="font-thin tracking-tight text-3xl mr-2" style="font-stretch: 1000%">Youri Scheepers</h2>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
@@ -66,6 +66,10 @@ const openProject = (id: number) => {
   setTimeout(() => {
     router.push("/project/"+id)
   }, 500)
+}
+
+const openAbout = () => {
+  router.push("/about")
 }
 
 let pageOpenPassed = false
