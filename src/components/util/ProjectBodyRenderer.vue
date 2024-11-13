@@ -14,13 +14,15 @@ import { defineProps } from "vue";
 import {ComponentName, ProjectBodyPart} from "../models/ProjectBodyPart.ts";
 import BodyTextRenderer from "./BodyTextRenderer.vue";
 import BodyImageRenderer from "./BodyImageRenderer.vue";
+import BodyMultiImageRenderer from "./BodyMultiImageRenderer.vue";
 
 defineProps<{
   parts: ProjectBodyPart[];
 }>();
 
-const components: Record<ComponentName, typeof BodyTextRenderer | typeof BodyImageRenderer> = {
+const components: Record<ComponentName, typeof BodyTextRenderer | typeof BodyImageRenderer | typeof BodyMultiImageRenderer> = {
   BodyTextRenderer,
   BodyImageRenderer,
+  BodyMultiImageRenderer
 };
 </script>
