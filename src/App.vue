@@ -19,14 +19,24 @@
 </template>
 
 <script setup lang="ts">
-import {provide, ref} from "vue";
+import {onBeforeUnmount, onMounted, provide, ref} from "vue";
 
 const mouseElement = ref<HTMLElement>()
 const mouseInner = ref<HTMLElement>()
 const activeIcon = ref('')
 
+let lastY = 0;
+let lastX = 0;
 const updateMouse = (event: MouseEvent) => {
-  mouseElement.value!.style.transform = `translate(${event.x-32}px, ${event.y-32}px)`
+  const scrolledHeight = window.scrollY
+  lastX = event.x-32
+  lastY = event.y-32
+  mouseElement.value!.style.transform = `translate(${lastX}px, ${lastY+scrolledHeight}px)`
+}
+
+const updateMouseOnScroll = () => {
+  const scrolledHeight = window.scrollY
+  mouseElement.value!.style.transform = `translate(${lastX}px, ${lastY+scrolledHeight}px)`
 }
 
 const updateMouseSize = () => {
@@ -40,6 +50,14 @@ const setIcon = (value: string) => {
   activeIcon.value = value;
   updateMouseSize()
 }
+
+onMounted(() => {
+  window.addEventListener("scroll", updateMouseOnScroll);
+})
+
+onBeforeUnmount(() => {
+  window.addEventListener("scroll", updateMouseOnScroll);
+})
 
 provide("setIcon", setIcon)
 </script>
