@@ -1,6 +1,7 @@
 import {Project} from "../models/Project.ts";
 import {ProjectBodyText} from "../models/ProjectBodyText.ts";
 import {ProjectBodyImage} from "../models/ProjectBodyImage.ts";
+import {ProjectBodyMultiImage} from "../models/ProjectBodyMultiImage.ts";
 
 export class ProjectService {
     private projects: Project[] = [
@@ -11,8 +12,12 @@ export class ProjectService {
         backgroundColor: "#fcf8e8",
         textColor: "#280003",
         body: [
-            new ProjectBodyText("Not many things are as deeply rooted into Dutch culture as sharing the bill. Many people nowadays use apps to help this process, to keep track of all expenses, and to accurately calculate what everyone has to pay. Dokkie does exactly that. It was my first project for my major in Computer Science."),
-            new ProjectBodyImage("./img/dokkie/dokkie-1.png", "My text")
+            new ProjectBodyText("Not many things are as deeply rooted into Dutch culture as sharing the bill. Many people nowadays use apps to help this process, to keep track of all expenses, and to accurately calculate what everyone has to pay. Dokkie does exactly that."),
+            new ProjectBodyText("Dokkie allows you to create events, and invite other users to them. You can then add costs to an event, and lock the event to finish. All users will then get access to a shareable list of transactions that must be made. Locking the event also starts payment tracking, offering an easy way to keep track of who you've sent money too, who you still need to pay and who you should still receive money from."),
+            new ProjectBodyMultiImage(["./img/dokkie/dokkie-1.png", "./img/dokkie/dokkie-2.png", "./img/dokkie/dokkie-3.png"], "Some of the core pages when logged in, viewed on a phone"),
+            new ProjectBodyText("The project follows the Google Material Design 3 guidelines, using their colors according to the guidelines and implementing some of their components."),
+            new ProjectBodyImage("./img/dokkie/dokkie-4.png", "The home page when logged in, viewed on desktop"),
+            new ProjectBodyImage("./img/dokkie/landing.png", "Part of the landing page")
         ]
     },
     {
