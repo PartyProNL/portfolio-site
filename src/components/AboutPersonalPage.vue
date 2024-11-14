@@ -1,28 +1,30 @@
 <template>
-  <div class="bg-black text-white flex w-full min-h-screen gap-x-20 px-20 pt-10">
-    <div class="w-1/2">
-      <div @click="toPage('/about')" @mouseenter="setIcon('left')" @mouseleave="setIcon('')"  class="bg-white text-black flex items-center gap-2 px-4 py-2 w-fit pr-6">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-        </svg>
-        <p>Go back</p>
-      </div>
+  <div :class="{disappear: isTransitioning}" class="bg-black text-white flex w-full min-h-screen gap-x-20 px-20 pt-10 font-serif">
+    <div class="w-1/2 body">
+      <div class="fixed top-10 left-20">
+        <div @click="toPage('/about')" @mouseenter="setIcon('left')" @mouseleave="setIcon('')"  class="bg-white text-black flex items-center gap-2 px-4 py-2 w-fit pr-6">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+          <p>Go back</p>
+        </div>
 
-      <h1 class="font-[Didot] text-6xl mt-8">I'm Youri</h1>
-      <div class="max-w-[500px]">
-        <p class="mt-4">I live in Westbeemster, a small town near Amsterdam and Purmerend, at about 4 meters under sea-level. You might have seen some of the cheese my town produces in the supermarket.</p>
-        <p class="mt-4">I have a lot of hobbies (sometimes I feel like I have too many), which include playing accordion, visiting theme parks, working out and bouldering. I also like to go out with friends, and like to visit a festival or other party from time to time.</p>
-        <p class="mt-4">Please take a look at the pictures on the right, showcasing some parts of my life.</p>
+        <h1 class="font-[Didot] text-6xl mt-8">I'm Youri</h1>
+        <div class="max-w-[500px]">
+          <p class="mt-4">I live in Westbeemster, a small town near Amsterdam and Purmerend, at about 4 meters under sea-level. You might have seen some of the cheese my town produces in the supermarket.</p>
+          <p class="mt-4">I have a lot of hobbies (sometimes I feel like I have too many), which include playing accordion, visiting theme parks, working out and bouldering. I also like to go out with friends, and like to visit a festival or other party from time to time.</p>
+          <p class="mt-4">Please take a look at the pictures on the right, showcasing some parts of my life.</p>
+        </div>
       </div>
     </div>
 
-    <div class="w-1/2 h-[calc(100vh-40px)] overflow-y-auto">
+    <div class="w-1/2">
       <div class="flex gap-4 ml-auto">
         <div class="w-full max-w-[300px] flex flex-col gap-4 mb-10">
-          <ImageWithExpendableAlt v-for="image in getEvenImages()" class="w-[300px]" :image="image.image" :alt="image.alt"/>
+          <ImageWithExpendableAlt :style="{animationDelay: index*100+'ms'}" v-for="(image, index) in getEvenImages()" class="w-[300px] card" :image="image.image" :alt="image.alt"/>
         </div>
         <div class="w-full max-w-[300px] flex flex-col gap-4 mb-10">
-          <ImageWithExpendableAlt v-for="image in getOddImages()" class="w-[300px]" :image="image.image" :alt="image.alt"/>
+          <ImageWithExpendableAlt :style="{animationDelay: (index*100+50)+'ms'}" v-for="(image, index) in getOddImages()" class="w-[300px] card" :image="image.image" :alt="image.alt"/>
         </div>
       </div>
     </div>
@@ -70,3 +72,54 @@ const toPage = (path: string) => {
   }, 500)
 }
 </script>
+
+<style scoped>
+.body {
+  animation: body-appear 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes body-appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.card {
+  animation: card-appear 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  opacity: 0;
+}
+
+@keyframes card-appear {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+
+.disappear {
+  animation: disappear 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+</style>
