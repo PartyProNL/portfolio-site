@@ -52,7 +52,7 @@ type Image = {
 }
 
 const images: Image[] = [
-    { image: "./img/personal/concertgebouw.jpg", alt: "I oftenly go to the Concertgebouw with my mother. This concert consisted of music composed mainly by Johannes Brahms. The Hungarian Dance was amazing to hear in real life." },
+    { image: "./img/personal/concertgebouw.jpg", alt: "I often go to the Concertgebouw with my mother. This concert consisted of music composed mainly by Johannes Brahms. The Hungarian Dance was amazing to hear in real life." },
     { image: "./img/personal/beemster-skies.jpg", alt: "This is what the sunsets are like where I live. I have a view just like this one from my room. I took this picture when I was cycling back home from the gym one evening." },
     { image: "./img/personal/phantasialand.jpg", alt: "This is F.L.Y., one of my favorite rollercoasters in the world. It's located at Phantasialand, which also happens to be one of my favorite theme parks." },
     { image: "./img/personal/accordion.jpg", alt: "My accordion, a Vignoni that was made in Italy. I've been playing for about 8 years now, and have had this accordion for 6 of those years." },
