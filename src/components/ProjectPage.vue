@@ -1,6 +1,6 @@
 <template>
   <div class="w-full min-h-screen bg-black">
-    <div class="w-full px-20 min-h-screen bg-black text-white page" :style="{backgroundColor: backgroundColor, color: textColor}">
+    <div :class="{ 'quick-color-transition': isTransitioningToAbout, 'page-fade-out': isTransitioningToAbout }" class="w-full px-20 min-h-screen bg-black text-white page" :style="{backgroundColor: backgroundColor, color: textColor}">
       <div :class="{ 'header-back': isTransitioning}" class="header flex justify-between font-[Didot]">
         <div class="flex mt-auto items-center">
           <h2 class="font-thin tracking-tight text-3xl mr-2" style="font-stretch: 1000%">Youri Scheepers</h2>
@@ -13,10 +13,10 @@
 
       <div :class="{ 'banner-parent-back': isTransitioning}" class="banner-parent min-w-full h-[520px] z-10">
         <div :class="{ 'banner-back': isTransitioning}" class="banner w-full h-[520px] bg-cover bg-center absolute left-0 z-10" :style="{backgroundImage: 'url('+project.image+')'}">
-          <div :class="{ 'back-button-back': isTransitioning}" class="absolute top-4 left-20 translate-x-1/2 text-white back-button opacity-0 rounded-full bg-black flex items-center font-[Spectral] font-thin text-lg">
-            <p @click="goBack" @mouseenter="showBackIcon" @mouseleave="setIcon('')"  class="h-full pl-12 pr-6 py-4">Projects</p>
+          <div :class="{ 'back-button-back': isTransitioning}" class="absolute font-serif top-4 left-20 translate-x-1/2 bg-white text-black back-button opacity-0 flex items-center text-lg">
+            <p @click="goBack" @mouseenter="showIcon('left')" @mouseleave="setIcon('')"  class="h-full pl-12 pr-6 py-4">Projects</p>
 
-            <p class="h-full pl-6 pr-12 py-4">About me</p>
+            <p @click="toAbout" @mouseenter="showIcon('banner')" @mouseleave="setIcon('')" class="h-full pl-6 pr-12 py-4">About me</p>
           </div>
         </div>
       </div>
@@ -105,8 +105,21 @@ const goBack = () => {
   }, 1000)
 }
 
-const showBackIcon = () => {
-  if(!isTransitioning.value) setIcon("left")
+const isTransitioningToAbout = ref(false)
+const toAbout = () => {
+  if(isTransitioningToAbout.value) return;
+  isTransitioningToAbout.value = true;
+  backgroundColor.value = "#000000"
+  textColor.value = "#FFFFFF"
+  setIcon("")
+
+  setTimeout(() => {
+    router.push("/about")
+  }, 500)
+}
+
+const showIcon = (icon: string) => {
+  if(!isTransitioning.value) setIcon(icon)
 }
 </script>
 
@@ -313,6 +326,26 @@ Transitions back
   }
   0% {
     opacity: 1;
+  }
+}
+
+/* Fade to about */
+.quick-color-transition {
+  transition: color, background-color 0.5s ease-in-out;
+}
+
+.page-fade-out {
+  animation: page-fade-out 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes page-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 </style>
