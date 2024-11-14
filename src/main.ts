@@ -6,11 +6,13 @@ import HomePage from "./components/HomePage.vue";
 import ProjectPage from "./components/ProjectPage.vue";
 import AboutPage from "./components/AboutPage.vue";
 import {createHead} from "@unhead/vue";
+import AboutPersonalPage from "./components/AboutPersonalPage.vue";
 
 const routes = [
     { path: '/', component: HomePage },
     { path: '/about', component: AboutPage },
-    { path: '/project/:id', component: ProjectPage }
+    { path: '/about/personal', component: AboutPersonalPage },
+    { path: '/project/:id', component: ProjectPage },
 ]
 
 const router = createRouter({
