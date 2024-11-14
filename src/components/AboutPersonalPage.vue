@@ -11,7 +11,7 @@
 
         <h1 class="font-[Didot] text-6xl mt-8">I'm Youri</h1>
         <div class="max-w-[500px]">
-          <p class="mt-4">I live in Westbeemster, a small town near Amsterdam and Purmerend, at about 4 meters under sea-level. You might have seen some of the cheese my town produces in the supermarket.</p>
+          <p class="mt-4">I live in Westbeemster, a small town near Amsterdam and Purmerend, at about 4 meters below sea-level. You might have seen some of the cheese my town produces in the supermarket.</p>
           <p class="mt-4">I have a lot of hobbies (sometimes I feel like I have too many), which include playing accordion, visiting theme parks, working out and bouldering. I also like to go out with friends, and like to visit a festival or other party from time to time.</p>
           <p class="mt-4">Please take a look at the pictures on the right, showcasing some parts of my life.</p>
         </div>
@@ -20,7 +20,7 @@
 
     <div class="w-1/2">
       <div class="flex gap-4 ml-auto">
-        <div class="w-full max-w-[300px] flex flex-col gap-4 mb-10">
+        <div class="w-full max-w-[300px] flex flex-col gap-4 mb-10 scroll-offset">
           <ImageWithExpendableAlt :style="{animationDelay: index*100+'ms'}" v-for="(image, index) in getEvenImages()" class="w-[300px] card" :image="image.image" :alt="image.alt"/>
         </div>
         <div class="w-full max-w-[300px] flex flex-col gap-4 mb-10">
@@ -34,10 +34,15 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import {inject, ref} from "vue";
-import ImageWithExpendableAlt, {Image} from "./util/ImageWithExpendableAlt.vue";
+import ImageWithExpendableAlt from "./util/ImageWithExpendableAlt.vue";
 
 const setIcon: (value: string) => {} = inject("setIcon")!
 setIcon('')
+
+type Image = {
+  image: string,
+  alt: string
+}
 
 const images: Image[] = [
     { image: "./img/personal/concertgebouw.jpg", alt: "I oftenly go to the Concertgebouw with my mother. This concert consisted of music composed mainly by Johannes Brahms. The Hungarian Dance was amazing to hear in real life." },
@@ -120,6 +125,22 @@ const toPage = (path: string) => {
   }
   100% {
     opacity: 0;
+  }
+}
+
+.scroll-offset {
+  animation: scroll-offset linear forwards;
+  animation-timeline: scroll(root block);
+  animation-range: 0vh 200vh;
+}
+
+@keyframes scroll-offset {
+  from {
+    margin-top: 0;
+  }
+
+  to {
+    margin-top: -400px;
   }
 }
 </style>
