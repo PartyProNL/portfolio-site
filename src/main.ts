@@ -5,11 +5,12 @@ import {createRouter, createWebHashHistory} from "vue-router";
 import HomePage from "./components/HomePage.vue";
 import ProjectPage from "./components/ProjectPage.vue";
 import AboutPage from "./components/AboutPage.vue";
+import {createHead} from "@unhead/vue";
 
 const routes = [
-    { path: '/', component: HomePage, meta: { title: "Youri Scheepers" } },
-    { path: '/about', component: AboutPage, meta: { title: "About me" } },
-    { path: '/project/:id', component: ProjectPage, meta: { title: "Project" } }
+    { path: '/', component: HomePage },
+    { path: '/about', component: AboutPage },
+    { path: '/project/:id', component: ProjectPage }
 ]
 
 const router = createRouter({
@@ -17,12 +18,6 @@ const router = createRouter({
     routes,
 })
 
-router.beforeEach((to, _, next) => {
-    const title = to.meta.title as string
-    if (title) {
-        document.title = title
-    }
-    next()
-})
+const head = createHead()
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(head).mount('#app')
