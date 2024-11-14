@@ -24,8 +24,8 @@ export class ProjectService {
         name: "BandiThemepark",
         slogan: "The next generation of Minecraft themeparks.",
         image: "./img/banner-4.png",
-        backgroundColor: "#fcf8e8",
-        textColor: "#280003",
+        backgroundColor: "#FEF3C7",
+        textColor: "#1B1B1E",
         body: [
             new ProjectBodyText("Back in february 2020 I got invited to join a project called BandiThemepark. BandiThemepark is a fictional themepark, built in a modified version of the famous videogame Minecraft. I joined this project as a developer, but quickly also became the co-owner."),
             new ProjectBodyText("I have been working on the project as a volunteer developer since then. My main task is developing the Kotlin back-end that runs the themepark part, but I also work on some of our other services, such as our websites and internal tools."),
@@ -47,8 +47,8 @@ export class ProjectService {
         name: "Code Exchange",
         slogan: "Empowering students to help each other.",
         image: "./img/banner-2.jpg",
-        backgroundColor: "#D7FDF0",
-        textColor: "#171738",
+        backgroundColor: "#E3DFFF",
+        textColor: "#16120D",
         body: [
             new ProjectBodyText("For my second academic project, I had to create a coding forum for students, inspired by StackOverflow."),
             new ProjectBodyImage("./img/code-exchange/code-exchange-2.png", "The home page of the site"),
@@ -61,8 +61,8 @@ export class ProjectService {
         name: "TripSwift",
         slogan: "Quickly view Dutch public transport data.",
         image: "./img/banner-5.jpg",
-        backgroundColor: "#fcf8e8",
-        textColor: "#280003",
+        backgroundColor: "#E1EFE6",
+        textColor: "#403D58",
         body: [
             new ProjectBodyText("One day, I started getting annoyed with the 9292 app I was using to get my bus times. 9292 only shows your saved bus stops on the departure times screen, after your location has been loaded. This can makes it so that you often have to wait at least a few seconds. It also doesn't have a quick button to see departure times of a saved stop on the home page either."),
             new ProjectBodyText("Besides this, it also loads a lot of ads, which can result in high data usage and even longer loading times. At some point, I had enough and decided to look into making my own app. I discovered that I could get a personal API-key for a public transport API, totally for free. I used this to create an app, that fixed my issues and removed the ads."),
@@ -75,8 +75,8 @@ export class ProjectService {
         name: "Elections",
         slogan: "Accessible insight into election data for everyone.",
         image: "./img/banner-3.jpg",
-        backgroundColor: "#fcf8e8",
-        textColor: "#280003",
+        backgroundColor: "#E0F3FC",
+        textColor: "#190B28",
         body: [
             new ProjectBodyText("For my third semester, I was tasked with creating a website together with my team to view Dutch election results. We built a front-end using TypeScript, Vue3 and TailwindCSS, and connected it to a Java Spring Boot with Hibernate back-end."),
             new ProjectBodyImage("./img/elections/elections-1.png", "The core page showing a summary of the selected election's results"),
