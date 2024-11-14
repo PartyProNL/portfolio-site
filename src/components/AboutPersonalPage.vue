@@ -45,7 +45,7 @@ const images: Image[] = [
     { image: "./img/personal/goat.jpg", alt: "I visited Southern England in May 2024. This (illegally cute) goat was at a farm we visited. My mom also likes to keep goats, but she currently doesn't have any ones as cute as this one." },
     { image: "./img/personal/ziplining.jpg", alt: "I like to do fun activities that push my boundaries. These ziplines certainly did. The views were incredible though. They are located in South Africa, where some of my family lives." },
     { image: "./img/personal/record-player.jpg", alt: "This is my dad's old record player. I don't collect records myself, but one day we decided to take a look at my parent's old records. The song that was playing when I took this picture was 'Everybody wants to rule the world' by Tears for Fears, which I love." },
-    { image: "./img/personal/steam-deck.jpg", alt: "I like to play games, especially on my Steam Deck. For a high-school project, I created a game in Unreal Engine 5, and downloaded it to my own device, which you can see here. Excuse the programmer art." },
+    { image: "./img/personal/steam-deck.jpg", alt: "I like to play games, especially on my Steam Deck. For a high-school project, I created a game in Unreal Engine 5, and downloaded it to my own device, which you can see here. Excuse the programmer art. It's always so cool when you create something and make it feel real like this." },
     { image: "./img/personal/chicken.jpg", alt: "I am addicted to chicken. This fried chicken I had at Soju Bar in Amsterdam was some of the best I have had in my life. 10/10 would recommend." },
 ]
 

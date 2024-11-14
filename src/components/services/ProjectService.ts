@@ -58,6 +58,20 @@ export class ProjectService {
         ]
     },
     {
+        name: "TripSwift",
+        slogan: "Quickly view Dutch public transport data.",
+        image: "./img/banner-5.jpg",
+        backgroundColor: "#fcf8e8",
+        textColor: "#280003",
+        body: [
+            new ProjectBodyText("One day, I started getting annoyed with the 9292 app I was using to get my bus times. 9292 only shows your saved bus stops on the departure times screen, after your location has been loaded. This can makes it so that you often have to wait at least a few seconds. It also doesn't have a quick button to see departure times of a saved stop on the home page either."),
+            new ProjectBodyText("Besides this, it also loads a lot of ads, which can result in high data usage and even longer loading times. At some point, I had enough and decided to look into making my own app. I discovered that I could get a personal API-key for a public transport API, totally for free. I used this to create an app, that fixed my issues and removed the ads."),
+            new ProjectBodyMultiImage(["./img/tripswift/tripswift-1.png", "./img/tripswift/tripswift-2.png", "./img/tripswift/tripswift-3.png"], "These are the main screens of the app. Bus 305 is the one I take from Central Station to get back home!"),
+            new ProjectBodyText("I still use it every single day, and it costs me over 8x less mobile data to use."),
+            new ProjectBodyText("The app was made with Android/Jetpack Compose with Kotlin, and uses Google's Material Design 3. It also uses the dynamic color system introduced in Android 12. This way, it always matches the look and feel of my phone's UI.")
+        ]
+    },
+    {
         name: "Elections",
         slogan: "Accessible insight into election data for everyone.",
         image: "./img/banner-3.jpg",
