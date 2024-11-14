@@ -36,12 +36,41 @@ import FollowingImage from "./util/FollowingImage.vue";
 import {ProjectService} from "./services/ProjectService.ts";
 import {Project} from "./models/Project.ts";
 import {useRoute, useRouter} from "vue-router";
+import {useHead} from "@unhead/vue";
 
 const setIcon: (value: string) => {} = inject("setIcon")!
 
 const projectService = new ProjectService();
 const projects = ref(projectService.getProjects());
 const currentProjectIndex = ref(0)
+
+const pageTitle = "Youri Scheepers"
+const pageDescription = "Welcome to my portfolio. Here you can learn more about me and my works"
+const pageImage = `${window.location.origin}/img/banner-1.jpg`
+useHead({
+  title: pageTitle,
+  meta: [
+      // Basic tags
+      { name: "description", content: pageDescription},
+
+      // Open Graph/Facebook tags
+      { property: 'og:title', content: pageTitle },
+      { property: 'og:description', content: pageDescription },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:image', content: pageImage },
+      { property: 'og:url', content: window.location.href },
+
+      // Twitter card tags
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: pageTitle },
+      { name: 'twitter:description', content: pageDescription },
+      { name: 'twitter:image', content: pageImage }
+  ],
+  link: [
+    // Canonical URL for the page
+    { rel: 'canonical', href: window.location.href },
+  ]
+})
 
 const route = useRoute()
 const router = useRouter()
