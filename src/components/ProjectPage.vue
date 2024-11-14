@@ -30,9 +30,9 @@
             <ProjectBodyRenderer :parts="project.body"/>
           </div>
         </div>
-        <div :class="{ 'body-disappear': isTransitioning}" class="body ml-40 mt-40 mr-8">
-          <p class="font-bold">Dokkie</p>
-          <p>Design</p>
+        <div :class="{ 'body-disappear': isTransitioning}" class="body ml-40 mt-40 mr-8 invisible">
+          <p class="font-bold">Contents</p>
+          <p>Not implemented</p>
         </div>
       </div>
     </div>
