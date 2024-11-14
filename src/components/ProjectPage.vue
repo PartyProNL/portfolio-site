@@ -56,6 +56,8 @@ const projectId = parseInt(route.params.id as string);
 const projectService = new ProjectService()
 const project = projectService.getProject(projectId)!
 
+document.title = project.name
+
 setTimeout(() => {
   backgroundColor.value = project.backgroundColor
   textColor.value = project.textColor
