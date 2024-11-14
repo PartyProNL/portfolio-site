@@ -4,6 +4,8 @@ import { createWriteStream } from 'fs';
 const urls = [
     { url: '/', changefreq: 'daily', priority: 1.0 },
     { url: '/about', changefreq: 'daily', priority: 0.8 },
+    { url: '/about/personal', changefreq: 'daily', priority: 0.8 },
+    { url: '/about/professional', changefreq: 'daily', priority: 0.8 },
     // TODO: Find a way to make this use existing projects?
     { url: '/project/0', changefreq: 'daily', priority: 0.6 },
     { url: '/project/1', changefreq: 'daily', priority: 0.6 },
