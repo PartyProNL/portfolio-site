@@ -47,7 +47,7 @@ import {ProjectService} from "./services/ProjectService.ts";
 import {inject, ref} from "vue";
 import ProjectBodyRenderer from "./project-body/render/ProjectBodyRenderer.vue";
 import PageFooter from "./PageFooter.vue";
-import {useHead} from "@unhead/vue";
+import {setupSEO} from "./util/SEO.ts";
 
 const backgroundColor = ref("#000000")
 const textColor = ref("#FFFFFF")
@@ -57,31 +57,11 @@ const projectId = parseInt(route.params.id as string);
 const projectService = new ProjectService()
 const project = projectService.getProject(projectId)!
 
-const pageImage = `${window.location.origin}${project.image.replace("./", "/")}`
-useHead({
-  title: project.name,
-  meta: [
-    // Basic tags
-    { name: "description", content: project.slogan},
-
-    // Open Graph/Facebook tags
-    { property: 'og:title', content: project.name },
-    { property: 'og:description', content: project.slogan },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:image', content: pageImage },
-    { property: 'og:url', content: window.location.href },
-
-    // Twitter card tags
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: project.name },
-    { name: 'twitter:description', content: project.slogan },
-    { name: 'twitter:image', content: pageImage }
-  ],
-  link: [
-    // Canonical URL for the page
-    { rel: 'canonical', href: window.location.href },
-  ]
-})
+setupSEO(
+    project.name,
+    project.slogan,
+    project.image
+)
 
 setTimeout(() => {
   backgroundColor.value = project.backgroundColor

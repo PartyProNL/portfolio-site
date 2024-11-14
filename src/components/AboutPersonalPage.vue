@@ -35,6 +35,13 @@
 import {useRouter} from "vue-router";
 import {inject, ref} from "vue";
 import ImageWithExpendableAlt from "./util/ImageWithExpendableAlt.vue";
+import {setupSEO} from "./util/SEO.ts";
+
+setupSEO(
+    "About me personally",
+    "Get to know me on a personal level, such as my hobbies",
+    "./img/personal/record-player.jpg"
+)
 
 const setIcon: (value: string) => {} = inject("setIcon")!
 setIcon('')

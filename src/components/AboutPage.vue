@@ -40,38 +40,16 @@
 import {inject, ref} from "vue";
 import CascadingBackground from "./util/CascadingBackground.vue";
 import {useRouter} from "vue-router";
-import {useHead} from "@unhead/vue";
+import {setupSEO} from "./util/SEO.ts";
 
 const setIcon: (value: string) => {} = inject("setIcon")!
 setIcon('')
 
-const pageTitle = "About me"
-const pageDescription = "Choose how you want to learn more about me, either professionally or personally"
-const pageImage = `${window.location.origin}/img/banner-1.jpg`
-useHead({
-  title: pageTitle,
-  meta: [
-    // Basic tags
-    { name: "description", content: pageDescription},
-
-    // Open Graph/Facebook tags
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:image', content: pageImage },
-    { property: 'og:url', content: window.location.href },
-
-    // Twitter card tags
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: pageTitle },
-    { name: 'twitter:description', content: pageDescription },
-    { name: 'twitter:image', content: pageImage }
-  ],
-  link: [
-    // Canonical URL for the page
-    { rel: 'canonical', href: window.location.href },
-  ]
-})
+setupSEO(
+    "About me",
+    "Choose how you want to learn more about me, either professionally or personally",
+    "./img/banner-1.jpg"
+)
 
 const router = useRouter()
 
