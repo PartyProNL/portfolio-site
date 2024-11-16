@@ -1,5 +1,33 @@
-# Vue 3 + TypeScript + Vite
+# Developer Portfolio
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Welcome to my portfolio! I use this to showcase some of my previews work, my professional experience and some personality. Built using cutting-edge web technologies and designed with a clean and modern aesthetic, this portfolio represents my work as a software developer. This is the first version, and knowing myself, definitely not the last.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+![Home-screen](./assets/site.png)
+
+## 🛠️ Built with
+This project uses the following technologies:
+
+- [Vite](https://vite.dev/): A lightning-fast build tool for modern web applications.
+- [Vue 3](https://vuejs.org/): A progressive JavaScript framework for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/): Adds type safety and developer confidence to the codebase.
+- [TailwindCSS](https://tailwindcss.com/): A utility-first CSS framework for styling with speed and precision.
+
+## 🚀 Features
+
+- Interactive UI: Smooth transitions and animations powered by Vue 3.
+- SEO Optimized: Easily discoverable on search engines like Google.
+- Fast Performance: Built with Vite for quick load times.
+- Code Modularization: Written in TypeScript for maintainability and scalability.
+- Automatic Deployment: Using GitHub Actions to automatically deploy site to GitHub Pages.
+
+## 🌐 Deployment
+This portfolio is deployed via GitHub Pages and can be accessed at:
+[www.yourischeepers.com](https://www.yourischeepers.com/)
+
+Alternatively, just Google "Youri Scheepers," and my portfolio will appear in the search results!
+
+## 🖼️ Screenshots
+
+![Project page](./assets/project.png)
+![About page](./assets/about.png)
+![Personality about page](./assets/personal.png)
