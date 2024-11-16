@@ -16,8 +16,8 @@
 
       <div class="flex flex-col">
         <h4 class="font-semibold pb-2">Download resume</h4>
-        <p>In English</p>
-        <p>In Dutch</p>
+        <a class="cursor-none hover:underline" href="./resume/CV_Youri_Scheepers_EN.docx">In English</a>
+        <a class="cursor-none hover:underline" href="./resume/CV_Youri_Scheepers_NL.docx">In Dutch</a>
       </div>
     </div>
 
