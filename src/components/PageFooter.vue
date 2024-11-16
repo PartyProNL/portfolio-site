@@ -3,15 +3,15 @@
     <div class="w-full px-20 py-10 flex gap-40">
       <div class="flex flex-col">
         <h4 class="font-semibold pb-2">Pages</h4>
-        <RouterLink class="" to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink class="cursor-none hover:underline" to="/">Home</RouterLink>
+        <RouterLink class="cursor-none hover:underline" to="/about">About</RouterLink>
       </div>
 
       <div class="flex flex-col">
         <h4 class="font-semibold pb-2">Contact</h4>
-        <p>LinkedIn</p>
-        <p>E-mail</p>
-        <p>GitHub</p>
+        <a class="cursor-none hover:underline" href="https://www.linkedin.com/in/youri-scheepers/">LinkedIn</a>
+        <a class="cursor-none hover:underline" href="https://github.com/PartyProNL">GitHub</a>
+        <a class="cursor-none hover:underline" href="mailto:yourischeepers@outlook.com">E-mail</a>
       </div>
 
       <div class="flex flex-col">
