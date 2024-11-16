@@ -54,7 +54,6 @@ import {setupSEO} from "./util/SEO.ts";
 import {inject, ref} from "vue";
 import {useRouter} from "vue-router";
 import Review from "./util/Review.vue";
-import ImageWithExpendableAlt from "./util/ImageWithExpendableAlt.vue";
 
 setupSEO(
     "About me professionally",
