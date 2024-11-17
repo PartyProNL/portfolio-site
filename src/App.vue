@@ -69,6 +69,7 @@ const setIcon = (value: string) => {
 
 onMounted(() => {
   window.addEventListener("scroll", updateMouseOnScroll);
+  if(onMobile) mouseElement.value!.classList.add("hidden");
 })
 
 onBeforeUnmount(() => {
@@ -78,8 +79,10 @@ onBeforeUnmount(() => {
 provide("setIcon", setIcon)
 
 const router = useRouter()
+let onMobile = false
 if(mobileCheck()) {
   router.push("/mobile")
+  onMobile = true
 }
 </script>
 
