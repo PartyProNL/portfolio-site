@@ -10,7 +10,7 @@
       <h1 class="font-thin text-8xl leading-[0.8] mt-6">{{ getCurrentProject().name.toUpperCase() }}</h1>
     </div>
 
-    <div class="min-w-full h-[520px] relative">
+    <div class="min-w-full h-[520px] relative" @wheel="onWheel">
       <FollowingImage :class="{ 'carousel-transition': !isCarouselJumping, disappear: isTransitioning && currentProjectIndex !== -2, appear: currentProjectIndex !== -2 && !pageOpenPassed }" :enabled="false"  :style="{ transform: 'translateX('+getCarouselTranslation(-2)+')'}" class="absolute" :image="projects[projects.length-2].image"></FollowingImage>
       <FollowingImage :class="{ 'carousel-transition': !isCarouselJumping, disappear: isTransitioning && currentProjectIndex !== -1, appear: currentProjectIndex !== -1 && !pageOpenPassed }" :enabled="false"  :style="{ transform: 'translateX('+getCarouselTranslation(-1)+')'}" class="absolute" :image="projects[projects.length-1].image"></FollowingImage>
 
@@ -68,7 +68,11 @@ const getCurrentProject = (): Project => {
 }
 
 const nextProject = () => {
+  if(isCarouselTransitioning.value) return
+
   currentProjectIndex.value++
+  isCarouselTransitioning.value = true
+  setTimeout(() => { isCarouselTransitioning.value = false }, 1000)
 
   // Move to correct position if at end of carousel
   if(currentProjectIndex.value == projects.value.length) {
@@ -84,8 +88,13 @@ const nextProject = () => {
 }
 
 const isCarouselJumping = ref(false)
+const isCarouselTransitioning = ref(false)
 const previousProject = () => {
+  if(isCarouselTransitioning.value) return
+
   currentProjectIndex.value--
+  isCarouselTransitioning.value = true
+  setTimeout(() => { isCarouselTransitioning.value = false }, 1000)
 
   // Move to correct position if at end of carousel
   if(currentProjectIndex.value == -1) {
@@ -118,6 +127,14 @@ let pageOpenPassed = false
 setTimeout(() => {
   pageOpenPassed = true
 }, 10)
+
+const onWheel = (event: WheelEvent) => {
+  if(event.deltaY < 0) {
+    previousProject()
+  } else {
+    nextProject()
+  }
+}
 </script>
 
 <style scoped>
