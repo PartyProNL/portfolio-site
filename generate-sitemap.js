@@ -7,11 +7,11 @@ const urls = [
     { url: '/about/personal', changefreq: 'daily', priority: 0.8 },
     { url: '/about/professional', changefreq: 'daily', priority: 0.8 },
     // TODO: Find a way to make this use existing projects?
-    { url: '/project/0', changefreq: 'daily', priority: 0.6 },
-    { url: '/project/1', changefreq: 'daily', priority: 0.6 },
-    { url: '/project/2', changefreq: 'daily', priority: 0.6 },
-    { url: '/project/3', changefreq: 'daily', priority: 0.6 },
-    { url: '/project/4', changefreq: 'daily', priority: 0.6 },
+    { url: '/project/dokkie', changefreq: 'daily', priority: 0.6 },
+    { url: '/project/bandi-themepark', changefreq: 'daily', priority: 0.6 },
+    { url: '/project/code-exchange', changefreq: 'daily', priority: 0.6 },
+    { url: '/project/tripswift', changefreq: 'daily', priority: 0.6 },
+    { url: '/project/elections', changefreq: 'daily', priority: 0.6 },
 ];
 
 async function generateSitemap() {
