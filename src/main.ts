@@ -8,12 +8,14 @@ import AboutPage from "./components/AboutPage.vue";
 import {createHead} from "@unhead/vue";
 import AboutPersonalPage from "./components/AboutPersonalPage.vue";
 import AboutProfessionalPage from "./components/AboutProfessionalPage.vue";
+import MobilePage from "./components/MobilePage.vue";
 
 const routes = [
     { path: '/', component: HomePage },
     { path: '/about', component: AboutPage },
     { path: '/about/personal', component: AboutPersonalPage },
     { path: '/about/professional', component: AboutProfessionalPage },
+    { path: '/mobile', component: MobilePage },
     { path: '/project/:id', component: ProjectPage },
 ]
 

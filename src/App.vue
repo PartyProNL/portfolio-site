@@ -34,6 +34,8 @@
 
 <script setup lang="ts">
 import {onBeforeUnmount, onMounted, provide, ref} from "vue";
+import {mobileCheck} from "./components/util/DetectMobile.ts";
+import {useRouter} from "vue-router";
 
 const mouseElement = ref<HTMLElement>()
 const mouseInner = ref<HTMLElement>()
@@ -74,6 +76,11 @@ onBeforeUnmount(() => {
 })
 
 provide("setIcon", setIcon)
+
+const router = useRouter()
+if(mobileCheck()) {
+  router.push("/mobile")
+}
 </script>
 
 <style scoped>
