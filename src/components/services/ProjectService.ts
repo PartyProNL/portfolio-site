@@ -6,6 +6,7 @@ import {ProjectBodyMultiImage} from "../project-body/ProjectBodyMultiImage.ts";
 export class ProjectService {
     private projects: Project[] = [
     {
+        id: "dokkie",
         name: "Dokkie",
         slogan: "Split the bill, not your friend group.",
         image: "./img/banner-1.jpg",
@@ -21,6 +22,7 @@ export class ProjectService {
         ]
     },
     {
+        id: "bandi-themepark",
         name: "BandiThemepark",
         slogan: "The next generation of Minecraft themeparks.",
         image: "./img/banner-4.png",
@@ -44,6 +46,7 @@ export class ProjectService {
         ]
     },
     {
+        id: "code-exchange",
         name: "Code Exchange",
         slogan: "Empowering students to help each other.",
         image: "./img/banner-2.jpg",
@@ -58,6 +61,7 @@ export class ProjectService {
         ]
     },
     {
+        id: "tripswift",
         name: "TripSwift",
         slogan: "Quickly view Dutch public transport data.",
         image: "./img/banner-5.jpg",
@@ -72,6 +76,7 @@ export class ProjectService {
         ]
     },
     {
+        id: "elections",
         name: "Elections",
         slogan: "Accessible insight into election data for everyone.",
         image: "./img/banner-3.jpg",
@@ -92,7 +97,11 @@ export class ProjectService {
         return this.projects
     }
 
-    public getProject(id: number): Project | undefined {
-        return this.projects[id]
+    public getProject(id: string): Project | undefined {
+        return this.projects.find(it => it.id === id)
+    }
+
+    public getProjectIndex(id: string): number {
+        return this.projects.indexOf(this.getProject(id)!)
     }
 }

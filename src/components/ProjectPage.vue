@@ -53,7 +53,7 @@ const backgroundColor = ref("#000000")
 const textColor = ref("#FFFFFF")
 
 const route = useRoute()
-const projectId = parseInt(route.params.id as string);
+const projectId = route.params.id as string
 const projectService = new ProjectService()
 const project = projectService.getProject(projectId)!
 
@@ -80,8 +80,9 @@ const goBack = () => {
   textColor.value = "#FFFFFF"
   setIcon("")
 
+  const projectIndex = projectService.getProjectIndex(projectId)
   setTimeout(() => {
-    router.push("/?from="+projectId)
+    router.push("/?from="+projectIndex)
   }, 1000)
 }
 

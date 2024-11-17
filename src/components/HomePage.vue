@@ -16,7 +16,7 @@
 
       <FollowingImage :class="{ 'carousel-transition': !isCarouselJumping, disappear: isTransitioning && currentProjectIndex !== index, appear: currentProjectIndex !== index && !pageOpenPassed }" :enabled="!isTransitioning" v-for="(project, index) in projects" :style="{ transform: 'translateX('+getCarouselTranslation(index)+')'}" class="absolute" @mouseleave="setIcon('')" :image="project.image">
         <div v-if="index == currentProjectIndex" @click="previousProject" @mouseenter="setIcon('left')" class="h-full w-[20%]"></div>
-        <div @click="openProject(index)" v-if="index == currentProjectIndex" @mouseenter="setIcon('banner')" class="h-full w-[60%]"></div>
+        <div @click="openProject(project.id)" v-if="index == currentProjectIndex" @mouseenter="setIcon('banner')" class="h-full w-[60%]"></div>
         <div v-if="index == currentProjectIndex" @click="nextProject" @mouseenter="setIcon('right')" class="h-full w-[20%]"></div>
       </FollowingImage>
 
@@ -110,7 +110,7 @@ const previousProject = () => {
 }
 
 const isTransitioning = ref(false)
-const openProject = (id: number) => {
+const openProject = (id: string) => {
   if(isTransitioning.value) return;
   isTransitioning.value = true;
 
