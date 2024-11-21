@@ -1,6 +1,6 @@
 <template>
   <div class="w-full min-h-screen bg-white flex items-center justify-center">
-    <div class="overflow-hidden flex gap-1 font-[600] text-black text-2xl">
+    <div class="overflow-hidden flex gap-2 font-[600] text-black text-4xl">
       <p class="text -translate-y-full">Youri</p>
       <p class="text -translate-y-full" :style="{animationDelay: '100ms'}">Scheepers</p>
     </div>
