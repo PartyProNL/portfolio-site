@@ -10,7 +10,7 @@
           class="bg-cover project-card translate-x-[0%] relative"
           :style="{
             backgroundImage: `url(${project.image})`,
-            backgroundPosition: `${trackPercentage*100}% center`,
+            backgroundPosition: `${50 + ((index - (trackPercentage * (projects.length - 1)) - trackPercentage)) * 50}% center`,
             filter: `grayscale(${expandedProject == index ? 0 : 100}%)`
           }"
       >
@@ -50,8 +50,11 @@ function onScroll(event: WheelEvent) {
 }
 
 function selectProject(index: number) {
+  const trackWidth = trackElement.value.clientWidth+40;
+
   expandedProject.value = index;
   trackPosition.value = index * 300 - index * 8
+  trackPercentage.value = trackPosition.value / trackWidth
 }
 
 const trackOffset = computed(() => {
