@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 p-4">3 / 5</div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 p-4">{{centerProjectIndex+1}} / {{projects.length}}</div>
   </div>
 </template>
 
@@ -47,6 +47,7 @@ function onScroll(event: WheelEvent) {
   }
 
   trackPercentage.value = trackPosition.value / trackWidth
+  updateCurrentProjectIndex()
 }
 
 function selectProject(index: number) {
@@ -55,6 +56,12 @@ function selectProject(index: number) {
   expandedProject.value = index;
   trackPosition.value = index * 300 - index * 8
   trackPercentage.value = trackPosition.value / trackWidth
+  centerProjectIndex.value = index
+}
+
+const centerProjectIndex = ref(0)
+function updateCurrentProjectIndex() {
+  centerProjectIndex.value = Math.ceil((trackPercentage.value - ((50 / projects.value.length) / 100)) * (projects.value.length - 1))
 }
 
 const trackOffset = computed(() => {
