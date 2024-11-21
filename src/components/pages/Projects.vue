@@ -5,7 +5,7 @@
     <div ref="trackElement" class="flex gap-4 track" :style="{transform:'translateX(calc('+-trackPosition+'px + 50% - '+trackOffset+'px))'}">
       <div
           v-for="(project, index) in projects"
-          @click="selectProject(index)"
+          @click="selectProject()"
           :class="{'expanded-project-card': index == expandedProject}"
           class="bg-cover project-card translate-x-[0%] relative"
           :style="{
@@ -18,7 +18,13 @@
       </div>
     </div>
 
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 p-4">{{centerProjectIndex+1}} / {{projects.length}}</div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 p-4 flex gap-2">
+      <div class="overflow-hidden h-6">
+        <div v-for="i in projects.length" class="project-index-ticker" :style="{transform:'translateY(-'+centerProjectIndex*24+'px)'}">{{ i }}</div>
+      </div>
+      <div>/</div>
+      <div>{{projects.length}}</div>
+    </div>
   </div>
 </template>
 
@@ -50,7 +56,8 @@ function onScroll(event: WheelEvent) {
   updateCurrentProjectIndex()
 }
 
-function selectProject(index: number) {
+function selectProject() {
+  const index = centerProjectIndex.value
   const trackWidth = trackElement.value.clientWidth+40;
 
   expandedProject.value = index;
@@ -90,5 +97,9 @@ const expandedProject = ref(-1)
 
 .expanded-project-card {
   width: 600px;
+}
+
+.project-index-ticker {
+  transition: transform 0.5s cubic-bezier(0,.63,.44,.98);
 }
 </style>
