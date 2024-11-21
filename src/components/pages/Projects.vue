@@ -1,38 +1,46 @@
 <template>
-  <NavigationBar active-page="projects"/>
+  <div class="w-full h-screen overflow-hidden">
+    <Intro v-if="!openingFinished"/>
+    <NavigationBar :class="{ 'navigation-bar': isFirstOpen }" active-page="projects"/>
 
-  <div class="w-full h-screen bg-white flex items-center justify-center overflow-hidden" @wheel="onScroll">
-    <div ref="trackElement" class="flex gap-4 track" :style="{transform:'translateX(calc('+-trackPosition+'px + 50% - '+trackOffset+'px))'}">
+    <div class="w-full h-screen bg-white flex items-center justify-center overflow-hidden" @wheel="onScroll">
+      <div v-if="openingFinished" ref="trackElement" class="flex gap-4 track" :style="{transform:'translateX(calc('+-trackPosition+'px + 50% - '+trackOffset+'px))'}">
+        <div
+            v-for="(project, index) in projects"
+            @click="selectProject()"
+            :class="{'expanded-project-card': index == expandedProject, 'project-card-appear': isFirstOpen}"
+            class="bg-cover project-card relative"
+            :style="{
+              backgroundImage: `url(${project.image})`,
+              backgroundPosition: `${50 + ((index - (trackPercentage * (projects.length - 1)) - trackPercentage)) * 50}% center`,
+              filter: `grayscale(${expandedProject == index ? 0 : 100}%)`,
+              animationDelay: index*50+'ms'
+            }"
+        >
+          <TextRevealSide :text="project.name" v-if="expandedProject == index" class="absolute w-[600px] font-[600] text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[72px]"></TextRevealSide>
+        </div>
+      </div>
+
       <div
-          v-for="(project, index) in projects"
-          @click="selectProject()"
-          :class="{'expanded-project-card': index == expandedProject}"
-          class="bg-cover project-card translate-x-[0%] relative"
-          :style="{
-            backgroundImage: `url(${project.image})`,
-            backgroundPosition: `${50 + ((index - (trackPercentage * (projects.length - 1)) - trackPercentage)) * 50}% center`,
-            filter: `grayscale(${expandedProject == index ? 0 : 100}%)`
-          }"
+          class="absolute bottom-0 left-1/2 -translate-x-1/2 p-4 flex gap-2"
+          :class="{'project-counter': isFirstOpen}"
       >
-        <TextRevealSide :text="project.name" v-if="expandedProject == index" class="absolute w-[600px] font-[600] text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[72px]"></TextRevealSide>
+        <div class="overflow-hidden h-6">
+          <div v-for="i in projects.length" class="project-index-ticker" :style="{transform:'translateY(-'+centerProjectIndex*24+'px)'}">{{ i }}</div>
+        </div>
+        <div>/</div>
+        <div>{{projects.length}}</div>
       </div>
-    </div>
-
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 p-4 flex gap-2">
-      <div class="overflow-hidden h-6">
-        <div v-for="i in projects.length" class="project-index-ticker" :style="{transform:'translateY(-'+centerProjectIndex*24+'px)'}">{{ i }}</div>
-      </div>
-      <div>/</div>
-      <div>{{projects.length}}</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import {ProjectService} from "../services/ProjectService.ts";
-import {computed, ref} from "vue";
+import {computed, inject, ref} from "vue";
 import NavigationBar from "../NavigationBar.vue";
 import TextRevealSide from "../animation/TextRevealSide.vue";
+import Intro from "../animation/Intro.vue";
 
 const projectService = new ProjectService()
 const projects = ref(projectService.getProjects())
@@ -81,6 +89,17 @@ const trackOffset = computed(() => {
 })
 
 const expandedProject = ref(-1)
+
+
+const isFirstOpenFunction: () => boolean = inject("isFirstOpen")!
+const isFirstOpen = ref(isFirstOpenFunction())
+const openingFinished = ref(!isFirstOpen.value)
+
+if(isFirstOpen.value) {
+  setTimeout(() => {
+    openingFinished.value = true
+  }, 2000)
+}
 </script>
 
 <style scoped>
@@ -102,5 +121,63 @@ const expandedProject = ref(-1)
 
 .project-index-ticker {
   transition: transform 0.5s cubic-bezier(0,.63,.44,.98);
+}
+
+.navigation-bar {
+  animation: navigation-bar-enter;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0,.63,.22,.99);
+  opacity: 0;
+  animation-delay: 2s;
+}
+
+@keyframes navigation-bar-enter {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.project-counter {
+  animation: project-counter-appear;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0,.63,.22,.99);
+  opacity: 0;
+  animation-delay: 2s;
+}
+
+@keyframes project-counter-appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.project-card-appear {
+  animation: project-card-appear;
+  animation-duration: 1.0s;
+  animation-timing-function: cubic-bezier(0,.62,.46,1);
+  animation-fill-mode: forwards;
+  transform: translateX(400%);
+}
+
+@keyframes project-card-appear {
+  0% {
+    transform: translateX(400%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>
