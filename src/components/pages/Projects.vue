@@ -5,7 +5,7 @@
     <div ref="trackElement" class="flex gap-4 track" :style="{transform:'translateX(calc('+-trackPosition+'px + 50% - '+trackOffset+'px))'}">
       <div
           v-for="(project, index) in projects"
-          @click="expandedProject = index"
+          @click="selectProject(index)"
           :class="{'expanded-project-card': index == expandedProject}"
           class="bg-cover project-card translate-x-[0%] relative"
           :style="{
@@ -47,6 +47,11 @@ function onScroll(event: WheelEvent) {
   }
 
   trackPercentage.value = trackPosition.value / trackWidth
+}
+
+function selectProject(index: number) {
+  expandedProject.value = index;
+  trackPosition.value = index * 300 - index * 8
 }
 
 const trackOffset = computed(() => {
