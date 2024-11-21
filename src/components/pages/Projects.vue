@@ -14,7 +14,7 @@
             filter: `grayscale(${expandedProject == index ? 0 : 100}%)`
           }"
       >
-        <p v-if="expandedProject == index" class="absolute w-[600px] font-[600] text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[80px]">{{ project.name }}</p>
+        <TextRevealSide :text="project.name" v-if="expandedProject == index" class="absolute w-[600px] font-[600] text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[72px]"></TextRevealSide>
       </div>
     </div>
 
@@ -32,6 +32,7 @@
 import {ProjectService} from "../services/ProjectService.ts";
 import {computed, ref} from "vue";
 import NavigationBar from "../NavigationBar.vue";
+import TextRevealSide from "../animation/TextRevealSide.vue";
 
 const projectService = new ProjectService()
 const projects = ref(projectService.getProjects())
@@ -92,7 +93,7 @@ const expandedProject = ref(-1)
   width: 280px;
   transition: background-position 0.7s cubic-bezier(0,.35,.44,.98),
               width 0.7s cubic-bezier(0,.35,.44,.98),
-              filter 0.3s ease-in-out;
+              filter 0.5s ease-in-out;
 }
 
 .expanded-project-card {
