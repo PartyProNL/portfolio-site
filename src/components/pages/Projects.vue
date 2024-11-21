@@ -21,13 +21,13 @@
         </div>
       </div>
 
-      <div v-if="expandedProject != -1" class="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
+      <div v-if="expandedProject != -1" class="group absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
         <div class="overflow-hidden h-[14px]">
           <p class="text-[13px] font-[600] discover-text">DISCOVER</p>
         </div>
 
         <div class="p-4 rounded-full bg-[#F1F1F1] discover-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 group-hover:translate-y-1 transition-transform">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
           </svg>
         </div>
