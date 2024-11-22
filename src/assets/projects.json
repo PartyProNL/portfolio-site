@@ -6,12 +6,9 @@
     "image": "./img/banner-1.jpg",
     "backgroundColor": "#fcf8e8",
     "textColor": "#280003",
+    "intro": "Not many things are as deeply rooted into Dutch culture as sharing the bill. Many people nowadays use apps to help this process, to keep track of all expenses, and to accurately calculate what everyone has to pay. Dokkie does exactly that. It was my first academic project.",
     "labels": ["TypeScript", "MySQL", "Material Design"],
     "body": [
-      {
-        "type": "text",
-        "content": "Not many things are as deeply rooted into Dutch culture as sharing the bill. Many people nowadays use apps to help this process, to keep track of all expenses, and to accurately calculate what everyone has to pay. Dokkie does exactly that. It was my first academic project."
-      },
       {
         "type": "text",
         "content": "Dokkie allows you to create events, and invite other users to them. You can then add costs to an event, and lock the event to finish. All users will then get access to a shareable list of transactions that must be made. Locking the event also starts payment tracking, offering an easy way to keep track of who you've sent money too, who you still need to pay and who you should still receive money from."
@@ -48,6 +45,7 @@
     "image": "./img/banner-4.png",
     "backgroundColor": "#FEF3C7",
     "textColor": "#1B1B1E",
+    "intro": "Test",
     "labels": ["Kotlin", "Vue", "TypeScript", "MySQL", "MQTT", "ShadCN", "Docker"],
     "body": [
       {
@@ -122,6 +120,7 @@
     "image": "./img/banner-2.jpg",
     "backgroundColor": "#E3DFFF",
     "textColor": "#16120D",
+    "intro": "Test",
     "labels": ["TypeScript", "MySQL", "TailwindCSS"],
     "body": [
       {
@@ -161,6 +160,7 @@
     "image": "./img/banner-5.jpg",
     "backgroundColor": "#E1EFE6",
     "textColor": "#403D58",
+    "intro": "Test",
     "labels": ["Kotlin", "Android Compose", "Material Design"],
     "body": [
       {
@@ -197,6 +197,7 @@
     "image": "./img/banner-3.jpg",
     "backgroundColor": "#E0F3FC",
     "textColor": "#190B28",
+    "intro": "Test",
     "labels": ["Java", "Spring Boot", "Hibernate", "Docker", "CI/CD", "TypeScript", "Vue", "TailwindCSS"],
     "body": [
       {
