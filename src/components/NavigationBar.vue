@@ -4,7 +4,7 @@
 
     <div class="absolute left-1/2 flex -translate-x-1/2 gap-16 font-[500]">
       <p v-if="activePage == 'projects'" class="text-black cursor-pointer">Projects</p>
-      <p v-else class="text-[#666666] cursor-pointer">Projects</p>
+      <p v-else @click="openProjects" class="text-[#666666] cursor-pointer">Projects</p>
 
       <p v-if="activePage == 'about'" class="text-black cursor-pointer">About</p>
       <p v-else class="text-[#666666] cursor-pointer">About</p>
@@ -28,7 +28,14 @@
 </template>
 
 <script setup lang="ts">
+import {useRouter} from "vue-router";
+
 defineProps({
   activePage: String
 })
+
+const router = useRouter()
+function openProjects() {
+  router.push("/")
+}
 </script>

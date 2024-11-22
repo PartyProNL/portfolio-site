@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <div v-if="expandedProject != -1" class="group absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
+      <div @click="openProject(expandedProject)" v-if="expandedProject != -1" class="group absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
         <div class="overflow-hidden h-[14px]">
           <p class="text-[13px] font-[600] discover-text">DISCOVER</p>
         </div>
@@ -53,6 +53,7 @@ import {computed, inject, ref} from "vue";
 import NavigationBar from "../NavigationBar.vue";
 import TextRevealSide from "../animation/TextRevealSide.vue";
 import Intro from "../animation/Intro.vue";
+import {useRouter} from "vue-router";
 
 const projectService = new ProjectService()
 const projects = ref(projectService.getProjects())
@@ -117,6 +118,12 @@ if(isFirstOpen.value) {
   setTimeout(() => {
     openingFinished.value = true
   }, 2000)
+}
+
+const router = useRouter()
+function openProject(index: number) {
+  const project = projects.value[index]
+  router.push("/project/"+project.id)
 }
 </script>
 
