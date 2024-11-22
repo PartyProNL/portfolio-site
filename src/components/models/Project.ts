@@ -7,5 +7,6 @@ export type Project = {
     image: string,
     backgroundColor: string,
     textColor: string,
+    labels: string[],
     body: ProjectBodyPart[]
 }

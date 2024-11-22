@@ -6,6 +6,7 @@
     "image": "./img/banner-1.jpg",
     "backgroundColor": "#fcf8e8",
     "textColor": "#280003",
+    "labels": ["TypeScript", "MySQL", "Material Design"],
     "body": [
       {
         "type": "text",
@@ -47,6 +48,7 @@
     "image": "./img/banner-4.png",
     "backgroundColor": "#FEF3C7",
     "textColor": "#1B1B1E",
+    "labels": ["Kotlin", "Vue", "TypeScript", "MySQL", "MQTT", "ShadCN", "Docker"],
     "body": [
       {
         "type": "text",
@@ -120,6 +122,7 @@
     "image": "./img/banner-2.jpg",
     "backgroundColor": "#E3DFFF",
     "textColor": "#16120D",
+    "labels": ["TypeScript", "MySQL", "TailwindCSS"],
     "body": [
       {
         "type": "text",
@@ -158,6 +161,7 @@
     "image": "./img/banner-5.jpg",
     "backgroundColor": "#E1EFE6",
     "textColor": "#403D58",
+    "labels": ["Kotlin", "Android Compose", "Material Design"],
     "body": [
       {
         "type": "text",
@@ -193,6 +197,7 @@
     "image": "./img/banner-3.jpg",
     "backgroundColor": "#E0F3FC",
     "textColor": "#190B28",
+    "labels": ["Java", "Spring Boot", "Hibernate", "Docker", "CI/CD", "TypeScript", "Vue", "TailwindCSS"],
     "body": [
       {
         "type": "text",
