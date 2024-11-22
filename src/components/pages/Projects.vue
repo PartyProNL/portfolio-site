@@ -12,7 +12,7 @@
             class="bg-cover project-card relative"
             :style="{
               backgroundImage: `url(${project.image})`,
-              backgroundPosition: `${50 + ((index - (trackPercentage * (projects.length - 1)) - trackPercentage)) * 50}% center`,
+              backgroundPosition: `${getBackgroundPercentage(index)}% center`,
               filter: `grayscale(${expandedProject == index ? 0 : 100}%)`,
               animationDelay: index*50+'ms'
             }"
@@ -102,6 +102,12 @@ const trackOffset = computed(() => {
 
 const expandedProject = ref(-1)
 
+function getBackgroundPercentage(projectIndex: number): number {
+  const projectPercentage = projectIndex/(projects.value.length-1)
+  const deltaPercentage = projectPercentage - trackPercentage.value
+  const deltaPixels = deltaPercentage * (trackElement.value ? trackElement.value.clientWidth : 0)
+  return deltaPixels * 0.05 + 50;
+}
 
 const isFirstOpenFunction: () => boolean = inject("isFirstOpen")!
 const isFirstOpen = ref(isFirstOpenFunction())
@@ -116,14 +122,14 @@ if(isFirstOpen.value) {
 
 <style scoped>
 .track {
-  transition: transform 0.7s cubic-bezier(0,.35,.44,.98);
+  transition: transform 0.5s cubic-bezier(0,.35,.44,.98);
 }
 
 .project-card {
   height: 420px;
   width: 280px;
-  transition: background-position 0.7s cubic-bezier(0,.35,.44,.98),
-              width 0.7s cubic-bezier(0,.35,.44,.98),
+  transition: background-position 0.5s cubic-bezier(0,.35,.44,.98),
+              width 0.5s cubic-bezier(0,.35,.44,.98),
               filter 0.5s ease-in-out;
 }
 
