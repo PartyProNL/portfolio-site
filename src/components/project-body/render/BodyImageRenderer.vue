@@ -1,6 +1,7 @@
 <template>
-  <img class="mt-8 max-w-[1000px]" :src="url" :alt="altText">
-  <p class="italic ml-4">{{ altText }}</p>
+  <div class="w-full aspect-video p-4 bg-slate-900 my-1">
+    <div class="bg-cover bg-center w-full aspect-video" :style="{backgroundImage: `url(${url})`}"></div>
+  </div>
 </template>
 
 <script lang="ts" setup>
