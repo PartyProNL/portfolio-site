@@ -17,7 +17,7 @@
               animationDelay: index*50+'ms'
             }"
         >
-          <TextRevealSide :text="project.name" v-if="expandedProject == index" class="absolute w-[600px] font-[600] text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[72px]"></TextRevealSide>
+          <TextRevealSide :text="project.name" v-if="expandedProject == index" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
         </div>
       </div>
 
@@ -83,6 +83,7 @@ function selectProject() {
   const trackWidth = trackElement.value.clientWidth+40;
 
   expandedProject.value = index;
+  // TODO: Change trackposition so that it takes width of screen into account, take off 160px when screen is below 768px wide
   trackPosition.value = index * 300 - index * 8
   trackPercentage.value = trackPosition.value / trackWidth
   centerProjectIndex.value = index
@@ -141,7 +142,13 @@ function openProject(index: number) {
 }
 
 .expanded-project-card {
-  width: 600px;
+  width: 280px;
+}
+
+@media (min-width: 768px) {
+  .expanded-project-card {
+    width: 600px;
+  }
 }
 
 .project-index-ticker {
