@@ -5,7 +5,7 @@
     <div class="w-full fixed z-[5] max-w-[980px] h-14 top-14 bg-gradient-to-b from-white to-white/0"></div>
 
     <div class="w-full max-w-[980px] pt-24 z-0 relative mb-4">
-      <h1 class="text-[128px] font-[600] leading-[7rem] z-0 fixed">{{ project!.name }}</h1>
+      <h1 class="text-[128px] font-[600] leading-[7rem] z-0 fixed title">{{ project!.name }}</h1>
       <div
           class="w-full aspect-[4/2] bg-cover bg-center z-10 relative mt-[7rem]"
           :style="{backgroundImage: `url(${project!.image})`}"
@@ -51,7 +51,21 @@ async function sendBack() {
 </script>
 
 <style scoped>
+.title {
+  animation: title-disappear cubic-bezier(1,0,1,0) forwards;
+  animation-timeline: scroll(root block);
+  animation-range: 0vh 200px;
+}
 
+@keyframes title-disappear {
+  from {
+    opacity: 1
+  }
+
+  to {
+    opacity: 0;
+  }
+}
 </style>
 
 <style>
