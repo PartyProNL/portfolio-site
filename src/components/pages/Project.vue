@@ -20,6 +20,13 @@
       </div>
 
       <ProjectBodyRenderer :parts="project!.body"/>
+
+      <div class="w-full min-h-[200vh] flex justify-start items-center flex-col relative mt-40">
+        <h3 class="text-[48px] font-[600] sticky top-40 mb-20">Next project</h3>
+        <div class="h-[420px] bg-cover bg-center sticky top-1/2 -translate-y-1/2 mt-40 next-project-image" :style="{backgroundImage:`url(${project!.image})`}">
+
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +35,7 @@
 import NavigationBar from "../NavigationBar.vue";
 import {useRoute, useRouter} from "vue-router";
 import {ProjectService} from "../services/ProjectService.ts";
-import {inject} from "vue";
+import {inject, onMounted} from "vue";
 import ProjectBodyRenderer from "../project-body/render/ProjectBodyRenderer.vue";
 
 const route = useRoute()
@@ -48,6 +55,20 @@ isFirstOpenFunction()
 async function sendBack() {
   await router.push("/")
 }
+
+onMounted(() => {
+  const nextProjectImage = document.querySelector('.next-project-image') as HTMLElement;
+  const body = document.body;
+
+  if (nextProjectImage) {
+    const stickyStart = (nextProjectImage.getBoundingClientRect().top - body.getBoundingClientRect().top) - window.innerHeight * 0.25;
+    const stickyEnd = stickyStart + window.innerHeight / 2; // Adjust end point (100vh after start)
+
+    // Set CSS variables dynamically
+    body.style.setProperty("--next-project-image-start", `${stickyStart}px`);
+    body.style.setProperty("--next-project-image-end", `${stickyEnd}px`);
+  }
+});
 </script>
 
 <style scoped>
@@ -64,6 +85,23 @@ async function sendBack() {
 
   to {
     opacity: 0;
+  }
+}
+
+.next-project-image {
+  width: 280px;
+  animation: next-project-widen linear forwards;
+  animation-timeline: scroll(root block);
+  animation-range: var(--next-project-image-start) var(--next-project-image-end);
+}
+
+@keyframes next-project-widen {
+  from {
+    width: 280px;
+  }
+
+  to {
+    width: 600px;
   }
 }
 </style>
