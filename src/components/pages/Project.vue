@@ -4,7 +4,7 @@
 
     <div class="w-full fixed z-[5] max-w-[980px] h-14 top-14 bg-gradient-to-b from-white to-white/0"></div>
 
-    <div class="w-full max-w-[980px] pt-24 z-0 relative mb-4">
+    <div class="w-full max-w-[980px] pt-24 z-0 relative">
       <h1 class="text-[128px] font-[600] leading-[7rem] z-0 fixed title">{{ project!.name }}</h1>
       <div
           class="w-full aspect-[4/2] bg-cover bg-center z-10 relative mt-[7rem]"
@@ -21,8 +21,8 @@
 
       <ProjectBodyRenderer :parts="project!.body"/>
 
-      <div class="w-full min-h-[200vh] flex justify-start items-center flex-col relative mt-40">
-        <h3 class="text-[48px] font-[600] sticky top-40 mb-20">Next project</h3>
+      <div class="w-full min-h-[140vh] flex justify-start items-center flex-col relative mt-40">
+        <h3 class="text-[48px] font-[600] sticky top-1/3 mb-20">Next project</h3>
         <div class="h-[420px] bg-cover bg-center sticky top-1/2 -translate-y-1/2 mt-40 next-project-image" :style="{backgroundImage:`url(${project!.image})`}">
 
         </div>
@@ -90,7 +90,7 @@ onMounted(() => {
 
 .next-project-image {
   width: 280px;
-  animation: next-project-widen linear forwards;
+  animation: next-project-widen ease-out forwards;
   animation-timeline: scroll(root block);
   animation-range: var(--next-project-image-start) var(--next-project-image-end);
 }
