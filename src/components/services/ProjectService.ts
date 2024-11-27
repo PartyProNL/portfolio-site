@@ -39,4 +39,11 @@ export class ProjectService {
     public getProjectIndex(id: string): number {
         return this.projects.indexOf(this.getProject(id)!)
     }
+
+    public getNextProject(id: string): Project {
+        let index = this.getProjectIndex(id)
+        index++
+        if(index == this.projects.length) index = 0
+        return this.projects[index]
+    }
 }

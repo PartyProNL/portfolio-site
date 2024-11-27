@@ -2,7 +2,7 @@
   <div class="w-full min-h-screen flex justify-center relative">
     <NavigationBar class="z-10 bg-white"/>
 
-    <div class="w-full fixed z-[5] max-w-[980px] h-14 top-14 bg-gradient-to-b from-white to-white/0"></div>
+    <div class="w-full fixed z-[5] max-w-[980px] h-6 top-14 bg-gradient-to-b from-white to-white/0"></div>
 
     <div class="w-full max-w-[980px] pt-24 z-0 relative">
       <h1 class="text-[128px] font-[600] leading-[7rem] z-0 fixed title">{{ project!.name }}</h1>
@@ -21,10 +21,21 @@
 
       <ProjectBodyRenderer :parts="project!.body"/>
 
-      <div class="w-full min-h-[140vh] flex justify-start items-center flex-col relative mt-40">
-        <h3 class="text-[48px] font-[600] sticky top-1/3 mb-20">Next project</h3>
-        <div class="h-[420px] bg-cover bg-center sticky top-1/2 -translate-y-1/2 mt-40 next-project-image" :style="{backgroundImage:`url(${project!.image})`}">
+      <div class="w-full min-h-[100vh] flex justify-center items-center flex-col relative mt-40">
+        <div class="h-[420px] bg-cover bg-center relative next-project-image" :style="{backgroundImage:`url(${nextProject.image})`}">
+          <TextRevealSide :text="nextProject.name" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
 
+          <div @click="openNextProject" class="group absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
+            <div class="overflow-hidden h-[14px]">
+              <p class="text-[13px] font-[600] discover-text">DISCOVER</p>
+            </div>
+
+            <div class="p-4 rounded-full bg-[#F1F1F1] discover-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 group-hover:translate-y-1 transition-transform">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -37,6 +48,7 @@ import {useRoute, useRouter} from "vue-router";
 import {ProjectService} from "../services/ProjectService.ts";
 import {inject, onMounted} from "vue";
 import ProjectBodyRenderer from "../project-body/render/ProjectBodyRenderer.vue";
+import TextRevealSide from "../animation/TextRevealSide.vue";
 
 const route = useRoute()
 const router = useRouter()
@@ -44,6 +56,7 @@ const router = useRouter()
 const projectId = route.params.id as string
 const projectService = new ProjectService()
 const project = projectService.getProject(projectId)
+const nextProject = projectService.getNextProject(projectId)
 
 if(!project) {
   sendBack()
@@ -57,18 +70,24 @@ async function sendBack() {
 }
 
 onMounted(() => {
-  const nextProjectImage = document.querySelector('.next-project-image') as HTMLElement;
-  const body = document.body;
+  setTimeout(() => {
+    const nextProjectImage = document.querySelector('.next-project-image') as HTMLElement;
+    const body = document.body;
 
-  if (nextProjectImage) {
-    const stickyStart = (nextProjectImage.getBoundingClientRect().top - body.getBoundingClientRect().top) - window.innerHeight * 0.25;
-    const stickyEnd = stickyStart + window.innerHeight / 2; // Adjust end point (100vh after start)
+    if (nextProjectImage) {
+      const stickyStart = (nextProjectImage.getBoundingClientRect().top - body.getBoundingClientRect().top) - window.innerHeight * 0.5;
+      const stickyEnd = stickyStart + window.innerHeight/4 + 56; // Adjust end point (100vh after start)
 
-    // Set CSS variables dynamically
-    body.style.setProperty("--next-project-image-start", `${stickyStart}px`);
-    body.style.setProperty("--next-project-image-end", `${stickyEnd}px`);
-  }
+      // Set CSS variables dynamically
+      body.style.setProperty("--next-project-image-start", `${stickyStart}px`);
+      body.style.setProperty("--next-project-image-end", `${stickyEnd}px`);
+    }
+  }, 10)
 });
+
+async function openNextProject() {
+  await router.push("/project/"+nextProject.id)
+}
 </script>
 
 <style scoped>
