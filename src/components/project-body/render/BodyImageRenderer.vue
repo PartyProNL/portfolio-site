@@ -1,7 +1,5 @@
 <template>
-  <div class="w-full aspect-video p-4 bg-slate-900 my-1">
-    <div class="bg-cover bg-center w-full aspect-video" :style="{backgroundImage: `url(${url})`}"></div>
-  </div>
+  <img class="w-full my-2 drop-shadow-lg" :src="url" :alt="altText">
 </template>
 
 <script lang="ts" setup>
