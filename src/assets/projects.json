@@ -161,7 +161,7 @@
     "backgroundColor": "#E1EFE6",
     "textColor": "#403D58",
     "intro": "Test",
-    "labels": ["Kotlin", "Android Compose", "Material Design"],
+    "labels": ["Kotlin", "Jetpack Compose", "Material Design"],
     "body": [
       {
         "type": "text",

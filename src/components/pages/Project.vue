@@ -27,7 +27,7 @@
 
           <div @click="openNextProject" class="group absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
             <div class="overflow-hidden h-[14px]">
-              <p class="text-[13px] font-[600] discover-text">DISCOVER</p>
+              <p class="text-[13px] font-[600] discover-text">NEXT PROJECT</p>
             </div>
 
             <div class="p-4 rounded-full bg-[#F1F1F1] discover-arrow">
@@ -87,7 +87,7 @@ onMounted(() => {
       body.style.setProperty("--next-project-image-start", `${stickyStart}px`);
       body.style.setProperty("--next-project-image-end", `${stickyEnd}px`);
     }
-  }, 10)
+  }, 100)
 });
 
 async function openNextProject() {
