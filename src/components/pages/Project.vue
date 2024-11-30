@@ -25,10 +25,10 @@
         <div class="absolute top-20 left-1/2 -translate-x-1/2 text-[48px] font-[600]">Next project</div>
 
         <div class="w-full min-h-[100vh] flex justify-center items-center flex-col sticky mt-40 top-0">
-          <div class="h-[420px] bg-cover bg-center relative next-project-image" :style="{backgroundImage:`url(${nextProject.image})`}">
-            <TextRevealSide v-if="atBottom" :text="nextProject.name" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
+          <div class="h-[420px] bg-cover bg-center relative next-project-image" :style="{backgroundImage:`url(${nextProject.image})`}" :class="{'next-project-move-up': isOpeningProject}">
+            <TextRevealSide :class="{'fade-out': isOpeningProject}" v-if="atBottom" :text="nextProject.name" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
 
-            <div v-if="atBottom" @click="openNextProject" class="group absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
+            <div :class="{'fade-out': isOpeningProject}" v-if="atBottom" @click="openNextProject" class="group absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
               <div class="overflow-hidden h-[14px]">
                 <p class="text-[13px] font-[600] discover-text">NEXT PROJECT</p>
               </div>
@@ -94,8 +94,12 @@ onMounted(() => {
   }, 100)
 });
 
+const isOpeningProject = ref(false)
 async function openNextProject() {
-  await router.push("/project/"+nextProject.id)
+  isOpeningProject.value = true
+  setTimeout(async () => {
+    await router.push("/project/"+nextProject.id)
+  }, 1000)
 }
 
 const atBottom = ref(false)
@@ -206,6 +210,42 @@ onUnmounted(() => {
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/* Disappear */
+.fade-out {
+  animation: fade-out;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.next-project-move-up {
+  animation: next-project-move-up;
+  animation-duration: 1.0s;
+  animation-timing-function: cubic-bezier(.88,.01,.63,.99);
+  animation-fill-mode: forwards;
+  width: 600px;
+}
+
+@keyframes next-project-move-up {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(calc(-50vh - 210px));
   }
 }
 </style>
