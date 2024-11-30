@@ -21,19 +21,23 @@
 
       <ProjectBodyRenderer class="fade-up" :style="{animationDelay: '250ms'}" :parts="project!.body"/>
 
-      <div class="w-full min-h-[100vh] flex justify-center items-center flex-col relative mt-40">
-        <div class="h-[420px] bg-cover bg-center relative next-project-image" :style="{backgroundImage:`url(${nextProject.image})`}">
-          <TextRevealSide :text="nextProject.name" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
+      <div class="w-full min-h-[150vh] relative">
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 text-[48px] font-[600]">Next project</div>
 
-          <div @click="openNextProject" class="group absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
-            <div class="overflow-hidden h-[14px]">
-              <p class="text-[13px] font-[600] discover-text">NEXT PROJECT</p>
-            </div>
+        <div class="w-full min-h-[100vh] flex justify-center items-center flex-col sticky mt-40 top-0">
+          <div class="h-[420px] bg-cover bg-center relative next-project-image" :style="{backgroundImage:`url(${nextProject.image})`}">
+            <TextRevealSide v-if="atBottom" :text="nextProject.name" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
 
-            <div class="p-4 rounded-full bg-[#F1F1F1] discover-arrow">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 group-hover:translate-y-1 transition-transform">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-              </svg>
+            <div v-if="atBottom" @click="openNextProject" class="group absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
+              <div class="overflow-hidden h-[14px]">
+                <p class="text-[13px] font-[600] discover-text">NEXT PROJECT</p>
+              </div>
+
+              <div class="p-4 rounded-full bg-[#F1F1F1] discover-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 group-hover:translate-y-1 transition-transform">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -46,7 +50,7 @@
 import NavigationBar from "../NavigationBar.vue";
 import {useRoute, useRouter} from "vue-router";
 import {ProjectService} from "../services/ProjectService.ts";
-import {inject, onMounted, ref} from "vue";
+import {inject, onMounted, onUnmounted, ref} from "vue";
 import ProjectBodyRenderer from "../project-body/render/ProjectBodyRenderer.vue";
 import TextRevealSide from "../animation/TextRevealSide.vue";
 
@@ -80,8 +84,8 @@ onMounted(() => {
     const body = document.body;
 
     if (nextProjectImage) {
-      const stickyStart = (nextProjectImage.getBoundingClientRect().top - body.getBoundingClientRect().top) - window.innerHeight * 0.5;
-      const stickyEnd = stickyStart + window.innerHeight/4 + 56; // Adjust end point (100vh after start)
+      const stickyStart = (nextProjectImage.getBoundingClientRect().top - body.getBoundingClientRect().top) - window.innerHeight * 0.25;
+      const stickyEnd = stickyStart + window.innerHeight/2; // Adjust end point (100vh after start)
 
       // Set CSS variables dynamically
       body.style.setProperty("--next-project-image-start", `${stickyStart}px`);
@@ -93,6 +97,23 @@ onMounted(() => {
 async function openNextProject() {
   await router.push("/project/"+nextProject.id)
 }
+
+const atBottom = ref(false)
+const handleScroll = () => {
+  const scrollPosition = window.innerHeight + window.scrollY;
+  const pageHeight = document.documentElement.offsetHeight - 40;
+
+  atBottom.value = scrollPosition >= pageHeight
+};
+
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <style scoped>
@@ -147,6 +168,44 @@ async function openNextProject() {
 
   to {
     width: 600px;
+  }
+}
+
+.discover-arrow {
+  animation: discover-arrow-appear;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes discover-arrow-appear {
+  0% {
+    transform: scale(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(100%);
+    opacity: 1;
+  }
+}
+
+.discover-text {
+  animation: discover-text-appear;
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0,.63,.44,.98);
+  animation-fill-mode: forwards;
+}
+
+@keyframes discover-text-appear {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 </style>
