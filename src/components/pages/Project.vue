@@ -5,21 +5,21 @@
     <div class="w-full fixed z-[5] max-w-[980px] h-6 top-14 bg-gradient-to-b from-white to-white/0"></div>
 
     <div class="w-full max-w-[980px] pt-24 z-0 relative">
-      <h1 class="text-[128px] font-[600] leading-[7rem] z-0 fixed title">{{ project!.name }}</h1>
+      <h1 class="text-[128px] font-[600] leading-[7rem] z-0 fixed" :class="{'title': finishedOpening, 'fade-up': !finishedOpening}">{{ project!.name }}</h1>
       <div
-          class="w-full aspect-[4/2] bg-cover bg-center z-10 relative mt-[7rem]"
-          :style="{backgroundImage: `url(${project!.image})`}"
+          class="w-full aspect-[4/2] bg-cover bg-center z-10 relative mt-[7rem] fade-up"
+          :style="{backgroundImage: `url(${project!.image})`, animationDelay: '100ms'}"
       ></div>
 
       <div class="flex justify-between w-full mt-2 gap-4 font-[500]">
-        <p class="flex-shrink max-w-[540px]">{{ project!.intro }}</p>
+        <p class="flex-shrink max-w-[540px] fade-up" :style="{animationDelay: '150ms'}">{{ project!.intro }}</p>
 
-        <div class="flex gap-1 flex-shrink-0 max-w-[300px] flex-wrap justify-end items-start mb-auto">
+        <div class="flex gap-1 flex-shrink-0 max-w-[300px] flex-wrap justify-end items-start mb-auto fade-up" :style="{animationDelay: '200ms'}">
           <p class="bg-[#F1F1F1] text-[#5A5A5A] flex-shrink-0 h-fit px-4 py-2 rounded-full" v-for="label in project!.labels">{{ label }}</p>
         </div>
       </div>
 
-      <ProjectBodyRenderer :parts="project!.body"/>
+      <ProjectBodyRenderer class="fade-up" :style="{animationDelay: '250ms'}" :parts="project!.body"/>
 
       <div class="w-full min-h-[100vh] flex justify-center items-center flex-col relative mt-40">
         <div class="h-[420px] bg-cover bg-center relative next-project-image" :style="{backgroundImage:`url(${nextProject.image})`}">
@@ -46,7 +46,7 @@
 import NavigationBar from "../NavigationBar.vue";
 import {useRoute, useRouter} from "vue-router";
 import {ProjectService} from "../services/ProjectService.ts";
-import {inject, onMounted} from "vue";
+import {inject, onMounted, ref} from "vue";
 import ProjectBodyRenderer from "../project-body/render/ProjectBodyRenderer.vue";
 import TextRevealSide from "../animation/TextRevealSide.vue";
 
@@ -64,6 +64,11 @@ if(!project) {
 
 const isFirstOpenFunction: () => boolean = inject("isFirstOpen")!
 isFirstOpenFunction()
+
+const finishedOpening = ref(false)
+setTimeout(() => {
+  finishedOpening.value = true
+}, 1000)
 
 async function sendBack() {
   await router.push("/")
@@ -104,6 +109,27 @@ async function openNextProject() {
 
   to {
     opacity: 0;
+  }
+}
+
+.fade-up {
+  animation: fade-up;
+  animation-duration: 1.0s;
+  animation-timing-function: cubic-bezier(.37,.01,.12,.99);
+  animation-fill-mode: forwards;
+  opacity: 1;
+  transform: translateY(100vh);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 1;
+    transform: translateY(100vh);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

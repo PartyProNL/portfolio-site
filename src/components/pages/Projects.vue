@@ -3,7 +3,7 @@
     <Intro v-if="!openingFinished"/>
     <NavigationBar :class="{ 'navigation-bar': isFirstOpen }" active-page="projects"/>
 
-    <div class="w-full h-screen bg-white flex items-center justify-center overflow-hidden" @wheel="onScroll">
+    <div :class="{'track-move-up': isOpeningProject}" class="w-full h-screen  flex items-center justify-center overflow-hidden" @wheel="onScroll">
       <div v-if="openingFinished" ref="trackElement" class="flex gap-4 track" :style="{transform:'translateX(calc('+-trackPosition+'px + 50% - '+trackOffset+'px))'}">
         <div
             v-for="(project, index) in projects"
@@ -17,11 +17,11 @@
               animationDelay: index*50+'ms'
             }"
         >
-          <TextRevealSide :text="project.name" v-if="expandedProject == index" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
+          <TextRevealSide :class="{'fade-out': isOpeningProject}" :text="project.name" v-if="expandedProject == index" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
         </div>
       </div>
 
-      <div @click="openProject(expandedProject)" v-if="expandedProject != -1" class="group absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
+      <div :class="{'fade-out': isOpeningProject}" @click="openProject(expandedProject)" v-if="expandedProject != -1" class="group absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer px-8">
         <div class="overflow-hidden h-[14px]">
           <p class="text-[13px] font-[600] discover-text">DISCOVER</p>
         </div>
@@ -35,7 +35,7 @@
 
       <div
           class="absolute bottom-0 left-1/2 -translate-x-1/2 p-4 flex gap-2"
-          :class="{'project-counter': isFirstOpen}"
+          :class="{'project-counter': isFirstOpen, 'fade-out': isOpeningProject}"
       >
         <div class="overflow-hidden h-6">
           <div v-for="i in projects.length" class="project-index-ticker" :style="{transform:'translateY(-'+centerProjectIndex*24+'px)'}">{{ i }}</div>
@@ -122,9 +122,13 @@ if(isFirstOpen.value) {
 }
 
 const router = useRouter()
+const isOpeningProject = ref(false)
 function openProject(index: number) {
+  isOpeningProject.value = true
   const project = projects.value[index]
-  router.push("/project/"+project.id)
+  setTimeout(() => {
+    router.push("/project/"+project.id)
+  }, 1000)
 }
 </script>
 
@@ -248,6 +252,41 @@ function openProject(index: number) {
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/* Disappear */
+.fade-out {
+  animation: fade-out;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.track-move-up {
+  animation: track-move-up;
+  animation-duration: 1.0s;
+  animation-timing-function: cubic-bezier(.88,.01,.63,.99);
+  animation-fill-mode: forwards;
+}
+
+@keyframes track-move-up {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(calc(-50vh - 210px));
   }
 }
 </style>
