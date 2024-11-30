@@ -12,7 +12,7 @@
       ></div>
 
       <div class="flex justify-between w-full mt-2 gap-4 font-[500]">
-        <p class="flex-shrink max-w-[540px] fade-up" :style="{animationDelay: '150ms'}">{{ project!.intro }}</p>
+        <p class="flex-shrink max-w-[540px] fade-up tracking-wide" :style="{animationDelay: '150ms'}">{{ project!.intro }}</p>
 
         <div class="flex gap-1 flex-shrink-0 max-w-[300px] flex-wrap justify-end items-start mb-auto fade-up" :style="{animationDelay: '200ms'}">
           <p class="bg-[#F1F1F1] text-[#5A5A5A] flex-shrink-0 h-fit px-4 py-2 rounded-full" v-for="label in project!.labels">{{ label }}</p>

@@ -1,5 +1,5 @@
 <template>
-  <p class="mt-2 mb-4 max-w-[540px] font-[500]">{{ text }}</p>
+  <p class="mt-2 mb-8 max-w-[540px] font-[500] tracking-wide">{{ text }}</p>
 </template>
 
 <script lang="ts" setup>
