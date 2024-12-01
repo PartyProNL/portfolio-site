@@ -53,6 +53,7 @@ import {ProjectService} from "../services/ProjectService.ts";
 import {inject, onMounted, onUnmounted, ref} from "vue";
 import ProjectBodyRenderer from "../project-body/render/ProjectBodyRenderer.vue";
 import TextRevealSide from "../animation/TextRevealSide.vue";
+import {setupSEO} from "../util/SEO.ts";
 
 const route = useRoute()
 const router = useRouter()
@@ -65,6 +66,12 @@ const nextProject = projectService.getNextProject(projectId)
 if(!project) {
   sendBack()
 }
+
+setupSEO(
+    project!.name,
+    project!.slogan,
+    project!.image
+)
 
 const isFirstOpenFunction: () => boolean = inject("isFirstOpen")!
 isFirstOpenFunction()

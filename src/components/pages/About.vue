@@ -9,7 +9,6 @@
         I am a <span class="font-[500] not-italic">full-stack developer</span>, who loves <span class="font-[500] not-italic">Kotlin</span>, and is currently studying at <span class="font-[500] not-italic">AUAS</span>.
       </h1>
 
-
       <div class="grid grid-cols-2 gap-x-6 gap-y-10 mt-10 mb-10">
         <p class="text-[18px] font-[500]">I've always been passionate about computers, and got my first at 9 years old. Soon after, I made my first website, and programming become a hobby of mine at 14. I've been coding nearly every day since.</p>
 
@@ -128,7 +127,14 @@ import NavigationBar from "../NavigationBar.vue";
 import ExperienceItem from "../util/ExperienceItem.vue";
 import {inject} from "vue";
 import Review from "../util/Review.vue";
+import {setupSEO} from "../util/SEO.ts";
 
 const isFirstOpenFunction: () => boolean = inject("isFirstOpen")!
 isFirstOpenFunction()
+
+setupSEO(
+    "About me",
+    "I am a full-stack developer, who loves Kotlin, and is currently studying at AUAS. I've always been passionate about computers, and got my first at 9 years old. Soon after, I made my first website, and programming become a hobby of mine at 14. I've been coding nearly every day since.",
+    "./img/banner-1.jpg"
+)
 </script>

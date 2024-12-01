@@ -54,9 +54,16 @@ import NavigationBar from "../NavigationBar.vue";
 import TextRevealSide from "../animation/TextRevealSide.vue";
 import Intro from "../animation/Intro.vue";
 import {useRouter} from "vue-router";
+import {setupSEO} from "../util/SEO.ts";
 
 const projectService = new ProjectService()
 const projects = ref(projectService.getProjects())
+
+setupSEO(
+    "Youri Scheepers",
+    "A full-stack developer, who loves Kotlin, and is currently studying at AUAS. Take a look at some of my work and learn about me.",
+    "./img/banner-1.jpg"
+)
 
 const trackElement = ref()
 const trackPosition = ref(0)
