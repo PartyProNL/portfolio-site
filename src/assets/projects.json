@@ -4,7 +4,7 @@
     "name": "Dokkie",
     "slogan": "Split the bill, not your friend group.",
     "image": "./img/banner-1.jpg",
-    "coverImage": "./img/banner-1.jpg",
+    "coverImage": "./img/dokkie/cover.png",
     "backgroundColor": "#fcf8e8",
     "textColor": "#280003",
     "intro": "Not many things are as deeply rooted into Dutch culture as sharing the bill. Many people nowadays use apps to help this process, to keep track of all expenses, and to accurately calculate what everyone has to pay. Dokkie does exactly that. It was my first academic project.",
