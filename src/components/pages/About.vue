@@ -1,6 +1,6 @@
 <template>
   <div class="w-full min-h-screen flex justify-center relative text-slate-800">
-    <NavigationBar class="z-10 bg-white"/>
+    <NavigationBar class="z-10 bg-white" active-page="about"/>
 
     <div class="w-full fixed z-[5] max-w-[980px] h-6 top-14 bg-gradient-to-b from-white to-white/0"></div>
 
