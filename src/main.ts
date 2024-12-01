@@ -5,10 +5,12 @@ import {createRouter, createWebHashHistory} from "vue-router";
 import {createHead} from "@unhead/vue";
 import Projects from "./components/pages/Projects.vue";
 import Project from "./components/pages/Project.vue";
+import About from "./components/pages/About.vue";
 
 const routes = [
     { path: '/', component: Projects },
-    { path: '/project/:id', component: Project }
+    { path: '/project/:id', component: Project },
+    { path: '/about', component: About },
 ]
 
 const router = createRouter({

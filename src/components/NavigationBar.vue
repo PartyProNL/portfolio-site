@@ -8,7 +8,7 @@
       <p v-else @click="openProjects" class="text-[#666666] cursor-pointer">Projects</p>
 
       <p v-if="activePage == 'about'" class="text-black cursor-pointer">About</p>
-      <p v-else class="text-[#666666] cursor-pointer">About</p>
+      <p v-else @click="openAbout" class="text-[#666666] cursor-pointer">About</p>
     </div>
 
     <div class="flex gap-4">
@@ -38,5 +38,9 @@ defineProps({
 const router = useRouter()
 function openProjects() {
   router.push("/")
+}
+
+function openAbout() {
+  router.push("/about")
 }
 </script>
