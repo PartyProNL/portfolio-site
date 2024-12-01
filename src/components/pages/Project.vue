@@ -5,13 +5,13 @@
     <div class="w-full fixed z-[5] max-w-[980px] h-6 top-14 bg-gradient-to-b from-white to-white/0"></div>
 
     <div class="w-full max-w-[980px] pt-24 z-0 relative px-8">
-      <h1 class="text-[32px] lg:text-[128px] font-[600] leading-[1.5rem] lg:leading-[7rem] z-0 fixed" :class="{'title': finishedOpening, 'fade-up': !finishedOpening}">{{ project!.name }}</h1>
+      <h1 class="text-[32px] lg:text-[100px] font-[600] leading-[1.5rem] lg:leading-[6rem] z-0 fixed" :class="{'title': finishedOpening, 'fade-up': !finishedOpening}">{{ project!.name }}</h1>
       <div
-          class="w-full aspect-[4/2] bg-cover bg-center z-10 relative mt-[1.5rem] lg:mt-[7rem] fade-up"
+          class="w-full aspect-[4/2] bg-cover bg-center z-10 relative mt-[1.5rem] lg:mt-[6rem] fade-up"
           :style="{backgroundImage: `url(${project!.image})`, animationDelay: '100ms'}"
       ></div>
 
-      <div class="flex flex-col-reverse lg:flex-row justify-between w-full mt-2 gap-4 font-[500]">
+      <div class="flex flex-col-reverse lg:flex-row justify-between w-full mt-2 gap-4 font-[500] mb-8">
         <p class="flex-shrink max-w-[540px] fade-up tracking-wide" :style="{animationDelay: '200ms'}">{{ project!.intro }}</p>
 
         <div class="flex gap-1 flex-shrink-0  lg:max-w-[300px] flex-wrap justify-end items-start mb-auto fade-up" :style="{animationDelay: '150ms'}">

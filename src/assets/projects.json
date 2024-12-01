@@ -10,10 +10,6 @@
     "labels": ["TypeScript", "MySQL", "Material Design"],
     "body": [
       {
-        "type": "text",
-        "content": "Dokkie allows you to create events, and invite other users to them. You can then add costs to an event, and lock the event to finish. All users will then get access to a shareable list of transactions that must be made. Locking the event also starts payment tracking, offering an easy way to keep track of who you've sent money too, who you still need to pay and who you should still receive money from."
-      },
-      {
         "type": "multi-image",
         "urls": [
           "./img/dokkie/dokkie-1.png",
@@ -24,12 +20,16 @@
       },
       {
         "type": "text",
-        "content": "The project follows the Google Material Design 3 guidelines, using their colors according to the guidelines and implementing some of their components."
+        "content": "Dokkie allows you to create events, and invite other users to them. You can then add costs to an event, and lock the event to finish. All users will then get access to a shareable list of transactions that must be made. Locking the event also starts payment tracking, offering an easy way to keep track of who you've sent money too, who you still need to pay and who you should still receive money from."
       },
       {
         "type": "image",
         "url": "./img/dokkie/dokkie-4.png",
         "alt": "The home page when logged in, viewed on desktop"
+      },
+      {
+        "type": "text",
+        "content": "The project follows the Google Material Design 3 guidelines, using their colors according to the guidelines and implementing some of their components."
       },
       {
         "type": "image",
@@ -45,48 +45,17 @@
     "image": "./img/banner-4.png",
     "backgroundColor": "#FEF3C7",
     "textColor": "#1B1B1E",
-    "intro": "Test",
+    "intro": "Back in february 2020 I got invited to join a project called BandiThemepark. BandiThemepark is a fictional themepark, built in a modified version of the famous videogame Minecraft. It's a project where we push Minecraft to its limits, and try to innovate and push the community forwards.",
     "labels": ["Kotlin", "Vue", "TypeScript", "MySQL", "MQTT", "ShadCN", "Docker"],
     "body": [
-      {
-        "type": "text",
-        "content": "Back in february 2020 I got invited to join a project called BandiThemepark. BandiThemepark is a fictional themepark, built in a modified version of the famous videogame Minecraft. I joined this project as a developer, but quickly also became the co-owner."
-      },
-      {
-        "type": "text",
-        "content": "I have been working on the project as a volunteer developer since then. My main task is developing the Kotlin back-end that runs the themepark part, but I also work on some of our other services, such as our websites and internal tools."
-      },
-      {
-        "type": "image",
-        "url": "./img/bandi/landing.png",
-        "alt": "The landing page of our main site, www.bandithemepark.net"
-      },
-      {
-        "type": "text",
-        "content": "Our main website is powered by a content management system (CMS) called Strapi, so that anyone in our team can easily edit and update the site. It is also Search Engine Optimized."
-      },
-      {
-        "type": "text",
-        "content": "BandiThemepark exists out of a lot of different services. This includes our main game-server, a website, a webstore and internal administration and management tools. Almost all of these run using Docker. We also have communication between most of our services, some via a (partially public) REST API, and some using MQTT."
-      },
-      {
-        "type": "image",
-        "url": "./img/bandi/parkops-1.png",
-        "alt": "The login page of our administration tool"
-      },
-      {
-        "type": "image",
-        "url": "./img/bandi/parkops-2.png",
-        "alt": "The screen to manage so-called achievements players can get by exploring the themepark"
-      },
-      {
-        "type": "text",
-        "content": "We also have a (not currently public) store, where people can buy optional cosmetics and other features to add to their experience."
-      },
       {
         "type": "image",
         "url": "./img/bandi/store-1.png",
         "alt": "The home page of our store"
+      },
+      {
+        "type": "text",
+        "content": "I work as a developer on the project. I mainly develop the Minecraft part, done in Kotlin, but also do some designing and web development, like with our store."
       },
       {
         "type": "image",
@@ -100,6 +69,29 @@
       },
       {
         "type": "text",
+        "content": "BandiThemepark exists out of a lot of different services. This includes our main game-server, a website, a webstore & internal administration and management tools. Almost all of these run using Docker, and are powered by CI/CD. We also have communication between most of our services, some via a (partially public) REST API, and some using MQTT."
+      },
+      {
+        "type": "image",
+        "url": "./img/bandi/landing.png",
+        "alt": "The landing page of our main site, www.bandithemepark.net"
+      },
+      {
+        "type": "text",
+        "content": "Our main website is powered by a content management system (CMS) called Strapi, so that anyone in our team can easily edit and update the site. It is also Search Engine Optimized."
+      },
+      {
+        "type": "image",
+        "url": "./img/bandi/parkops-1.png",
+        "alt": "The login page of our administration tool"
+      },
+      {
+        "type": "image",
+        "url": "./img/bandi/parkops-2.png",
+        "alt": "The screen to manage so-called achievements players can get by exploring the themepark"
+      },
+      {
+        "type": "text",
         "content": "These are some of the web-apps I have worked on for BandiThemepark. I was also involved in developing the main REST API that powers most of our services, but my main task was the game-server(s) code. Most of that is hard to show, especially if you are not familiar with Minecraft. I do have some visualization for the rollercoasters I programmed though."
       },
       {
@@ -109,7 +101,7 @@
       },
       {
         "type": "text",
-        "content": "This picture shows our rollercoaster system. Minecraft does not have (realistic) rollercoasters as part of the game, so I had to program my own. At their core, these rollercoasters are Bezier splines, that have trains that follow these splines. These trains have simulated physics (written by me), and their rendering is powered by matrices and quaternions. Each rollercoaster also has a realistic control system, modeled after real-life examples. There can also be collisions between trains."
+        "content": "This picture shows our rollercoaster system. Minecraft does not have (realistic) rollercoasters as part of the base-game, so I was responsible for programming them. At their core, these rollercoasters are Bezier splines, that have trains that follow these. These trains have physics and collisions, and their rendering is powered by matrices and quaternions. Each rollercoaster also has a realistic control system, modeled after real-life examples."
       }
     ]
   },
@@ -120,13 +112,9 @@
     "image": "./img/banner-2.jpg",
     "backgroundColor": "#E3DFFF",
     "textColor": "#16120D",
-    "intro": "Test",
-    "labels": ["TypeScript", "MySQL", "TailwindCSS"],
+    "intro": "My second academic project was a coding forum for students, inspired by StackOverflow.",
+    "labels": ["TypeScript", "MySQL", "TailwindCSS", "Accessibility"],
     "body": [
-      {
-        "type": "text",
-        "content": "For my second academic project, I had to create a coding forum for students, inspired by StackOverflow."
-      },
       {
         "type": "image",
         "url": "./img/code-exchange/code-exchange-2.png",
@@ -136,6 +124,10 @@
         "type": "image",
         "url": "./img/code-exchange/code-exchange-1.png",
         "alt": "The view page for a question, featuring code syntax highlighting"
+      },
+      {
+        "type": "text",
+        "content": "This project had a bigger focus on accessibility, which was part research and part implementation. There was a lot of analyzing color contrasts and accounting for different kinds of colorblindness."
       },
       {
         "type": "multi-image",
@@ -160,17 +152,9 @@
     "image": "./img/banner-5.jpg",
     "backgroundColor": "#E1EFE6",
     "textColor": "#403D58",
-    "intro": "Test",
+    "intro": "One day, I started getting annoyed with the 9292 app I was using to get my bus times. 9292 only shows your saved bus stops on the departure times screen, after your location has been loaded. This can makes it so that you often have to wait at least a few seconds. It also doesn't have a quick button to see departure times of a saved stop on the home page either.",
     "labels": ["Kotlin", "Jetpack Compose", "Material Design"],
     "body": [
-      {
-        "type": "text",
-        "content": "One day, I started getting annoyed with the 9292 app I was using to get my bus times. 9292 only shows your saved bus stops on the departure times screen, after your location has been loaded. This can makes it so that you often have to wait at least a few seconds. It also doesn't have a quick button to see departure times of a saved stop on the home page either."
-      },
-      {
-        "type": "text",
-        "content": "Besides this, it also loads a lot of ads, which can result in high data usage and even longer loading times. At some point, I had enough and decided to look into making my own app. I discovered that I could get a personal API-key for a public transport API, totally for free. I used this to create an app, that fixed my issues and removed the ads."
-      },
       {
         "type": "multi-image",
         "urls": [
@@ -182,11 +166,7 @@
       },
       {
         "type": "text",
-        "content": "I still use it every single day, and it costs me over 8x less mobile data to use."
-      },
-      {
-        "type": "text",
-        "content": "The app was made with Android/Jetpack Compose with Kotlin, and uses Google's Material Design 3. It also uses the dynamic color system introduced in Android 12. This way, it always matches the look and feel of my phone's UI."
+        "content": "At one point I got so annoyed, that I decided to create my own app. It's simple, but extremely quick to use. I still use it every single day. The app was made with Jetpack Compose and Kotlin, and uses Google's Material Design 3. It also uses the dynamic color system introduced in Android 12. This way, it always matches the look and feel of my phone's UI."
       }
     ]
   },
@@ -197,25 +177,18 @@
     "image": "./img/banner-3.jpg",
     "backgroundColor": "#E0F3FC",
     "textColor": "#190B28",
-    "intro": "Test",
+    "intro": "My academic project for my third semester was a site to view Dutch election results. One of the major parts of this project was working with big amounts of data (up to 3GB per election). Much work was put into optimizing code and multi-threading. A lot of focus was also put into making viewing this data as easy as possible.",
     "labels": ["Java", "Spring Boot", "Hibernate", "Docker", "CI/CD", "TypeScript", "Vue", "TailwindCSS"],
     "body": [
-      {
-        "type": "text",
-        "content": "For my third semester, I was tasked with creating a website together with my team to view Dutch election results. We built a front-end using TypeScript, Vue3 and TailwindCSS, and connected it to a Java Spring Boot with Hibernate back-end."
-      },
       {
         "type": "image",
         "url": "./img/elections/elections-1.png",
         "alt": "The core page showing a summary of the selected election's results"
       },
       {
-        "type": "text",
-        "content": "The main task in this project was loading the election data. We used publicly available XML-files supplied by the government, and had to parse these to put them into an SQL database. These datasets are quite big, around 2-3GB each. We had limited computing resources, so our code being optimized was very important."
-      },
-      {
-        "type": "text",
-        "content": "I did many optimizations, but some included optimizing the indexes of our database, utilizing multithreading and using Java's PreparedStatements."
+        "type": "image",
+        "url": "./img/elections/elections-5.png",
+        "alt": "The main page to go deep into the data"
       },
       {
         "type": "image",
