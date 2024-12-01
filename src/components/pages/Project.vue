@@ -8,7 +8,7 @@
       <h1 class="text-[32px] lg:text-[100px] font-[600] leading-[1.5rem] lg:leading-[6rem] z-0 fixed" :class="{'title': finishedOpening, 'fade-up': !finishedOpening}">{{ project!.name }}</h1>
       <div
           class="w-full aspect-[4/2] bg-cover bg-center z-10 relative mt-[1.5rem] lg:mt-[6rem] fade-up"
-          :style="{backgroundImage: `url(${project!.image})`, animationDelay: '100ms'}"
+          :style="{backgroundImage: `url(${project!.coverImage})`, animationDelay: '100ms'}"
       ></div>
 
       <div class="flex flex-col-reverse lg:flex-row justify-between w-full mt-2 gap-4 font-[500] mb-8">
