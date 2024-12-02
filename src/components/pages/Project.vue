@@ -87,19 +87,23 @@ async function sendBack() {
 
 onMounted(() => {
   setTimeout(() => {
-    const nextProjectImage = document.querySelector('.next-project-image') as HTMLElement;
-    const body = document.body;
-
-    if (nextProjectImage) {
-      const stickyStart = (nextProjectImage.getBoundingClientRect().top - body.getBoundingClientRect().top) - window.innerHeight * 0.25;
-      const stickyEnd = stickyStart + window.innerHeight/2; // Adjust end point (100vh after start)
-
-      // Set CSS variables dynamically
-      body.style.setProperty("--next-project-image-start", `${stickyStart}px`);
-      body.style.setProperty("--next-project-image-end", `${stickyEnd}px`);
-    }
+    updateScrollAnimation()
   }, 100)
 });
+
+const updateScrollAnimation = () => {
+  const nextProjectImage = document.querySelector('.next-project-image') as HTMLElement;
+  const body = document.body;
+
+  if (nextProjectImage) {
+    const stickyStart = (nextProjectImage.getBoundingClientRect().top - body.getBoundingClientRect().top) - window.innerHeight * 0.25;
+    const stickyEnd = stickyStart + window.innerHeight/2; // Adjust end point (100vh after start)
+
+    // Set CSS variables dynamically
+    body.style.setProperty("--next-project-image-start", `${stickyStart}px`);
+    body.style.setProperty("--next-project-image-end", `${stickyEnd}px`);
+  }
+}
 
 const isOpeningProject = ref(false)
 async function openNextProject() {
@@ -117,13 +121,14 @@ const handleScroll = () => {
   atBottom.value = scrollPosition >= pageHeight
 };
 
-
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', updateScrollAnimation)
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener('load', updateScrollAnimation)
 });
 </script>
 
