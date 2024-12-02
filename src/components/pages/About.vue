@@ -5,14 +5,14 @@
     <div class="w-full fixed z-[5] max-w-[980px] h-6 top-14 bg-gradient-to-b from-white to-white/0"></div>
 
     <div class="w-full max-w-[980px] pt-24 z-0 relative px-8">
-      <h1 class="text-[32px] lg:text-[100px] font-[400] leading-[1.5rem] italic lg:leading-[6rem]">
+      <h1 class="text-[64px] lg:text-[100px] font-[400] leading-[4rem] italic lg:leading-[6rem]">
         I am a <span class="font-[500] not-italic">full-stack developer</span>, who loves <span class="font-[500] not-italic">Kotlin</span>, and is currently studying at <span class="font-[500] not-italic">AUAS</span>.
       </h1>
 
-      <div class="grid grid-cols-2 gap-x-6 gap-y-10 mt-10 mb-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-10 mt-10 mb-10">
         <p class="text-[18px] font-[500]">I've always been passionate about computers, and got my first at 9 years old. Soon after, I made my first website, and programming become a hobby of mine at 14. I've been coding nearly every day since.</p>
 
-        <div></div>
+        <div class=""></div>
 
         <div>
           <h3 class="font-[500] text-[64px] leading-[5rem]">Experience</h3>
@@ -56,7 +56,7 @@
         </div>
         <div></div>
 
-        <div class="col-span-2 flex gap-6 -mt-4">
+        <div class="lg:col-span-2 flex flex-col lg:flex-row gap-6 -mt-4">
           <div class="w-full flex flex-col gap-4">
             <Review :style="{animationDelay: '0ms'}" class="card" user="gbakewell" text="Wow, the quality of delivery is OUTSTANDING far surpassing my expectation. Not only was the plugin that Youri wrote for me perfectly to specification and bugless on the first (and only!) iteration, the quality of source code is amazing as well; no shortcuts taken anywhere, and perfectly taking advantage of OOP. Youri's plugin not only works perfectly as I required, but I even expect future maintenance and extension of this codebase to be a pleasure."/>
             <Review :style="{animationDelay: '100ms'}" class="card" user="jacobtwo" text="Very helpful, and walked me through turning my idea into a reality. Even helped me test the plugin to make sure everything works smoothly!"/>
@@ -98,7 +98,7 @@
           </div>
         </a>
 
-        <a href="./resume/CV_Youri_Scheepers_NL.docx" class="bg-slate-900 rounded-lg p-4 text-white -mt-4 flex justify-between items-center group cursor-pointer">
+        <a href="./resume/CV_Youri_Scheepers_NL.docx" class="bg-slate-900 rounded-lg p-4 text-white -mt-8 lg:-mt-4 flex justify-between items-center group cursor-pointer">
           <p class="font-[600] text-[24px]">Download my resume (NL)</p>
 
           <div class="bg-white rounded-full text-slate-900 flex justify-center items-center p-4">
@@ -108,7 +108,7 @@
           </div>
         </a>
 
-        <a href="https://github.com/PartyProNL" class="bg-slate-900 rounded-lg p-4 text-white -mt-4 flex justify-between items-center group cursor-pointer">
+        <a href="https://github.com/PartyProNL" class="bg-slate-900 rounded-lg p-4 text-white -mt-8 lg:-mt-4 flex justify-between items-center group cursor-pointer">
           <p class="font-[600] text-[24px]">Visit my GitHub</p>
 
           <div class="bg-white rounded-full text-slate-900 flex justify-center items-center p-4">
