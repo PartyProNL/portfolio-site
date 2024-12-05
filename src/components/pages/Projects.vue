@@ -3,7 +3,7 @@
     <Intro v-if="!openingFinished"/>
     <NavigationBar :class="{ 'navigation-bar': isFirstOpen }" active-page="projects"/>
 
-    <div @mousedown="startDragging" @mousemove="onDrag" @mouseup="stopDragging" :class="{'track-move-up': isOpeningProject}" class="w-full h-screen  flex items-center justify-center overflow-hidden" @wheel="onScroll">
+    <div @touchstart="startTouchDragging" @touchmove="onTouchDrag" @touchend="stopTouchDragging" @mousedown="startDragging" @mousemove="onDrag" @mouseup="stopDragging" :class="{'track-move-up': isOpeningProject}" class="w-full h-screen  flex items-center justify-center overflow-hidden" @wheel="onScroll">
       <div v-if="openingFinished" ref="trackElement" class="flex gap-4 track" :style="{transform:'translateX(calc('+-trackPosition+'px + 50% - '+trackOffset+'px))'}">
         <div
             v-for="(project, index) in projects"
@@ -162,23 +162,50 @@ let releasedAt = 0
 
 function startDragging(event: MouseEvent) {
   event.preventDefault()
-  isDown = true
-  startX = event.clientX
-  startTrackPosition = trackPosition.value
-  startedAt = Date.now()
+  startDrag(event.clientX)
 }
 
 function onDrag(event: MouseEvent) {
   if(!isDown) return
   event.preventDefault()
-
-  const deltaX = startX - event.clientX;
-  trackPosition.value = startTrackPosition + deltaX * 1.3
-  updateTrackPositionAndPercentage()
+  updateDrag(event.clientX)
 }
 
 function stopDragging(event: MouseEvent) {
   event.preventDefault()
+  stopDrag()
+}
+
+function startTouchDragging(event: TouchEvent) {
+  event.preventDefault()
+  startDrag(event.touches[0].clientX)
+}
+
+function onTouchDrag(event: TouchEvent) {
+  if(!isDown) return
+  event.preventDefault()
+  updateDrag(event.touches[0].clientX)
+}
+
+function stopTouchDragging(event: TouchEvent) {
+  event.preventDefault()
+  stopDrag()
+}
+
+function startDrag(x: number) {
+  isDown = true
+  startX = x
+  startTrackPosition = trackPosition.value
+  startedAt = Date.now()
+}
+
+function updateDrag(x: number) {
+  const deltaX = startX - x;
+  trackPosition.value = startTrackPosition + deltaX * 1.3
+  updateTrackPositionAndPercentage()
+}
+
+function stopDrag() {
   isDown = false
   if(Date.now() - startedAt > 100) releasedAt = Date.now()
 }
