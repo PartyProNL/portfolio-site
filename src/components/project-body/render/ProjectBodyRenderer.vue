@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component
+    <component @loaded="emit('loaded')"
         v-for="(part, index) in parts"
         :key="index"
         :is="part.render().component"
@@ -16,4 +16,6 @@ import { ProjectBodyPart } from "../ProjectBodyPart.ts";
 defineProps<{
   parts: ProjectBodyPart[];
 }>();
+
+const emit = defineEmits(['loaded'])
 </script>

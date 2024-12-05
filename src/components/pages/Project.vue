@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <ProjectBodyRenderer class="fade-up" :style="{animationDelay: '250ms'}" :parts="project!.body"/>
+      <ProjectBodyRenderer @loaded="updateScrollAnimation" class="fade-up" :style="{animationDelay: '250ms'}" :parts="project!.body"/>
 
       <div class="w-full min-h-[150vh] relative">
         <div class="absolute top-20 left-1/2 -translate-x-1/2 text-[48px] font-[600]">Next project</div>
