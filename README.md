@@ -1,6 +1,6 @@
 # Developer Portfolio
 
-Welcome to my portfolio! I use this to showcase some of my previews work, my professional experience and some personality. Built using cutting-edge web technologies and designed with a clean and modern aesthetic, this portfolio represents my work as a software developer. This is the first version, and knowing myself, definitely not the last.
+Welcome to my portfolio! I use this to showcase some of my previews work, my professional experience and some personality. Built using cutting-edge web technologies and designed with a clean and modern aesthetic, this portfolio represents my work as a software developer. This is the ~~first~~ second version, and knowing myself, definitely not the last.
 
 ![Home-screen](./assets/site.png)
 
@@ -30,4 +30,3 @@ Alternatively, just Google "Youri Scheepers," and my portfolio will appear in th
 
 ![Project page](./assets/project.png)
 ![About page](./assets/about.png)
-![Personality about page](./assets/personal.png)
