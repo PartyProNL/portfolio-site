@@ -3,7 +3,7 @@
     <Intro v-if="!openingFinished"/>
     <NavigationBar :class="{ 'navigation-bar': isFirstOpen }" active-page="projects"/>
 
-    <div :class="{'track-move-up': isOpeningProject}" class="w-full h-screen  flex items-center justify-center overflow-hidden" @wheel="onScroll">
+    <div @mousedown="startDragging" @mousemove="onDrag" @mouseup="stopDragging" :class="{'track-move-up': isOpeningProject}" class="w-full h-screen  flex items-center justify-center overflow-hidden" @wheel="onScroll">
       <div v-if="openingFinished" ref="trackElement" class="flex gap-4 track" :style="{transform:'translateX(calc('+-trackPosition+'px + 50% - '+trackOffset+'px))'}">
         <div
             v-for="(project, index) in projects"
@@ -17,7 +17,7 @@
               animationDelay: index*50+'ms'
             }"
         >
-          <TextRevealSide :class="{'fade-out': isOpeningProject}" :text="project.name" v-if="expandedProject == index" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px]"></TextRevealSide>
+          <TextRevealSide :class="{'fade-out': isOpeningProject}" :text="project.name" v-if="expandedProject == index" class="absolute w-full font-[600] text-[32px] md:text-[64px] top-0 left-0 -translate-x-[3px] -translate-y-[36px] md:-translate-y-[72px] select-none"></TextRevealSide>
         </div>
       </div>
 
@@ -73,8 +73,12 @@ const trackElement = ref()
 const trackPosition = ref(0)
 const trackPercentage = ref(0)
 function onScroll(event: WheelEvent) {
-  expandedProject.value = -1
   trackPosition.value += event.deltaY / 2
+  updateTrackPositionAndPercentage()
+}
+
+function updateTrackPositionAndPercentage() {
+  expandedProject.value = -1
 
   if(trackPosition.value < 0) {
     trackPosition.value = 0;
@@ -90,6 +94,8 @@ function onScroll(event: WheelEvent) {
 }
 
 function selectProject() {
+  if(Date.now() - releasedAt < 200) return
+
   const index = centerProjectIndex.value
   const trackWidth = trackElement.value.clientWidth+40;
 
@@ -145,6 +151,36 @@ function openProject(index: number) {
 function preloadImage(src: string) {
   const img = new Image();
   img.src = src;
+}
+
+// Dragging
+let isDown = false
+let startX = 0
+let startTrackPosition = 0
+let startedAt = 0
+let releasedAt = 0
+
+function startDragging(event: MouseEvent) {
+  event.preventDefault()
+  isDown = true
+  startX = event.clientX
+  startTrackPosition = trackPosition.value
+  startedAt = Date.now()
+}
+
+function onDrag(event: MouseEvent) {
+  if(!isDown) return
+  event.preventDefault()
+
+  const deltaX = startX - event.clientX;
+  trackPosition.value = startTrackPosition + deltaX * 1.3
+  updateTrackPositionAndPercentage()
+}
+
+function stopDragging(event: MouseEvent) {
+  event.preventDefault()
+  isDown = false
+  if(Date.now() - startedAt > 100) releasedAt = Date.now()
 }
 </script>
 
