@@ -59,6 +59,10 @@ import {setupSEO} from "../util/SEO.ts";
 const projectService = new ProjectService()
 const projects = ref(projectService.getProjects())
 
+projects.value.forEach((it) => {
+  preloadImage(it.image)
+})
+
 setupSEO(
     "Youri Scheepers",
     "A full-stack developer, who loves Kotlin, and is currently studying at AUAS. Take a look at some of my work and learn about me.",
@@ -136,6 +140,11 @@ function openProject(index: number) {
   setTimeout(() => {
     router.push("/project/"+project.id)
   }, 1000)
+}
+
+function preloadImage(src: string) {
+  const img = new Image();
+  img.src = src;
 }
 </script>
 
