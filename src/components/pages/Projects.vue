@@ -155,60 +155,60 @@ function preloadImage(src: string) {
 
 // Dragging
 let isDown = false
-let startX = 0
-let startTrackPosition = 0
-let startedAt = 0
+// let startX = 0
+// let startTrackPosition = 0
+// let startedAt = 0
 let releasedAt = 0
 
 function startDragging(event: MouseEvent) {
   event.preventDefault()
-  startDrag(event.clientX)
+  // startDrag(event.clientX)
 }
 
 function onDrag(event: MouseEvent) {
   if(!isDown) return
   event.preventDefault()
-  updateDrag(event.clientX)
+  // updateDrag(event.clientX)
 }
 
 function stopDragging(event: MouseEvent) {
   event.preventDefault()
-  stopDrag()
+  // stopDrag()
 }
 
 function startTouchDragging(event: TouchEvent) {
   event.preventDefault()
-  startDrag(event.touches[0].clientX)
+  // startDrag(event.touches[0].clientX)
 }
 
 function onTouchDrag(event: TouchEvent) {
   if(!isDown) return
   event.preventDefault()
-  updateDrag(event.touches[0].clientX)
+  // updateDrag(event.touches[0].clientX)
 }
 
 function stopTouchDragging(event: TouchEvent) {
   event.preventDefault()
-  stopDrag()
+  // stopDrag()
 }
 
-function startDrag(x: number) {
-  isDown = true
-  startX = x
-  startTrackPosition = trackPosition.value
-  startedAt = Date.now()
-}
-
-function updateDrag(x: number) {
-  const deltaX = startX - x;
-  trackPosition.value = startTrackPosition + deltaX * 1.3
-  updateTrackPositionAndPercentage()
-}
-
-function stopDrag() {
-  isDown = false
-  if(Date.now() - startedAt > 100) releasedAt = Date.now()
-}
+// function startDrag(x: number) {
+//   isDown = true
+//   startX = x
+//   startTrackPosition = trackPosition.value
+//   startedAt = Date.now()
+// }
+//
+// function updateDrag(x: number) {
+//   const deltaX = startX - x;
+//   trackPosition.value = startTrackPosition + deltaX * 1.3
+//   updateTrackPositionAndPercentage()
+// }
+//
+// function stopDrag() {
+//   isDown = false
+//   if(Date.now() - startedAt > 100) releasedAt = Date.now()
+// }
 </script>
 
 <style scoped>
